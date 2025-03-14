@@ -66,7 +66,7 @@ module load cuda/12.3
 module load python/3.11.6--gcc--8.5.0
 ```
 
-Then you can follow the steps above to get your Python virtualenvironment set up. 
+Then you can follow the steps above to get your Python virtual environment set up. 
 
 To  submit a job you can utilize the [script](https://github.com/Chromeilion/RoMA/blob/main/scripts/run_experiment.sh) 
 provided in the RoMA repo. Before running it, you must create 
