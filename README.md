@@ -55,7 +55,16 @@ python -m example-experiment
 
 ### Running on Leonardo
 
-When running on Leonardo, the steps above can be performed on the login node.
+When running on Leonardo, before doing the steps above on the login node,
+make sure to load the correct modules:
+
+```bash
+module load cuda/12.3
+module load python/3.11.6--gcc--8.5.0
+```
+
+Then you can follow the steps above to get your Python virtualenvironment set up. 
+
 To  submit a job you can utilize the [script](https://github.com/Chromeilion/RoMA/blob/main/scripts/run_experiment.sh) 
 provided in the RoMA repo. Before running it, you must create 
 a ```.env``` file with all the required variables in the directory you 
