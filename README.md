@@ -53,6 +53,9 @@ E.g. for an experiment called "example-experiment":
 python -m example-experiment
 ```
 
+The CLI might be different for each experiment. Refer to the experiment-specific 
+documentation for this.
+
 ### Running on Leonardo
 
 When running on Leonardo, before doing the steps above on the login node,
