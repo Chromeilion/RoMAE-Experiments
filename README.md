@@ -81,3 +81,12 @@ problem, you can still run it as follows:
 ```bash
 sbatch path/to/run_experiment.sh
 ```
+
+If the experiment has a command line, you can pass arguments to the cli by 
+adding them to the end of the command like so:
+
+```bash
+sbatch run_experiment.sh arg1 arg2 ... argN
+```
+
+
