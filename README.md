@@ -24,14 +24,15 @@ python -m venv .venv
 source .venv/bin/activate
 ```
 
-Next install RoMA. Likely you'll want to install it in editable mode:
+Next install RoMA. To install it directly form the repo:
 
 ```bash
-pip install -e roma@git+https://github.com/Chromeilion/RoMA@main#egg=roma
+pip install roma@git+https://github.com/Chromeilion/RoMA@main#egg=roma
 ```
 
-Alternatively, if you dont have access to the GitHub repo, you can also just  
-install RoMA from a local directory:
+Alternatively, if you dont have access to the repo, you can also just  
+install RoMA from a local directory. To make it easier to update it I recommend 
+using editable mode:
 
 ```bash
 cd path/to/RoMA
