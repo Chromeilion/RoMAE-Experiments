@@ -4,11 +4,11 @@ build-backend = "setuptools.build_meta"
 
 [tool.setuptools.packages.find]
 # Change this to the name of the directory containing the python package
-include = ["example"]
+include = ["example_experiment"]
 
 [project]
 # Change this to the name of the experiment
-name = "example"
+name = "example_experiment"
 # Set this to a description of the experiment
 description = "An simple example RoMA experiment."
 
@@ -17,9 +17,6 @@ readme = "README.md"
 requires-python = ">=3.11"
 authors = [
     {name = "Uros Zivanovic", email = "uros.zivanovic@studenti.units.it"},
-    {name = "Andre Joshua Scaffidi"},
-    {name = "Martín de los Rios"},
-    {name = "Serafina Di Gioia"}
 ]
 maintainers = [
     {name = "Uros Zivanovic", email = "uros.zivanovic@studenti.units.it"},
