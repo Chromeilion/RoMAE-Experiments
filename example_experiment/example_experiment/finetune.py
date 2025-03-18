@@ -1,12 +1,18 @@
-from roma.model import RoMAForClassification, RoMAForClassificationConfig
+from roma.model import (RoMAForClassification, RoMAForClassificationConfig,
+                        EncoderConfig)
 from roma.trainer import Trainer, TrainerConfig
+from roma.utils import get_encoder_size
 import torch.nn as nn
 
 from example_experiment.example_experiment.dataset import ExampleDataset
 
 
 def finetune():
+    # Let's use the tiny model:
+    encoder_args = get_encoder_size("RoMA-large")
+
     model_config = RoMAForClassificationConfig(
+        encoder_config=EncoderConfig(**encoder_args),
         tubelet_size=(2, 1, 1),
         dim_output=1,
         n_channels=1
