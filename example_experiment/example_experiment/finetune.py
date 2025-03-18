@@ -19,6 +19,7 @@ def finetune():
         base_lr=3e-3,
         eval_every=300,
         save_every=300,
+        batch_size=16,
         project_name="Example Experiment"
     )
     trainer = Trainer(trainer_config)
