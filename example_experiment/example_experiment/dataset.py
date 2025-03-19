@@ -22,7 +22,7 @@ class ExampleDataset(Dataset):
         value = torch.zeros(100).normal_(mean=mean.item())[:, None, None, None]
         sample = {
             "values": value,
-            "positions": torch.zeros((3, 50)),
+            "positions": torch.zeros((1, 50)),
             "label": mean
         }
         return sample

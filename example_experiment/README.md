@@ -12,7 +12,7 @@ This package has 3 subcommands: finetune, preprocess, and pretrain.
 If you want to run finetuning for example, you can run:
 
 ```bash
-python -m example finetune
+python -m example_experiment finetune
 ```
 
 With the Leonardo script, you should set EXPERIMENT_PACKAGE to example in the 
