@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools", "setuptools-scm"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+# Change this to the name of the directory containing the python package
+include = ["elasticc2"]
+
+[project]
+# Change this to the name of the experiment
+name = "elasticc2"
+# Set this to a description of the experiment
+description = "Classification on ELAsTiCC 2."
+
+version = "0.0.1"
+readme = "README.md"
+requires-python = ">=3.11"
+authors = [
+    {name = "Uros Zivanovic", email = "uros.zivanovic@studenti.units.it"},
+]
+maintainers = [
+    {name = "Uros Zivanovic", email = "uros.zivanovic@studenti.units.it"},
+]
+# Add in any dependancies your experiment has here
+dependencies = []
+
+[project.urls]
+Repository = "https://github.com/Chromeilion/RoMA-Experiments"
