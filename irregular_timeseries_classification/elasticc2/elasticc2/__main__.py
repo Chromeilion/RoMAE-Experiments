@@ -1,17 +1,17 @@
 import argparse as ap
 
 def run_preprocess(*_, **__):
-    from example_experiment.example_experiment import preprocess
+    from elasticc2 import preprocess
     preprocess.preprocess()
 
 
 def run_pretrain(*_, **__):
-    from example_experiment.example_experiment import pretrain
+    from elasticc2 import pretrain
     pretrain.pretrain()
 
 
 def run_finetune(*_, **__):
-    from example_experiment.example_experiment import finetune
+    from elasticc2 import finetune
     finetune.finetune()
 
 
