@@ -76,7 +76,7 @@ class GetElasticcData(object):
                     total=len(self.all_object_files)))
 
         else:
-            for object_file in self.all_object_files:
+            for object_file in self.all_object_files[30:]:
 
                 all_cores_files, name_object = self.__get_cores(object_file)
 
@@ -97,7 +97,8 @@ class GetElasticcData(object):
                             total=len(all_cores_files)))
 
                         df_cores_lc, df_cores_header = [], []
-                        for df_lc, df_header in mapped_values:
+                        while mapped_values:
+                            df_lc, df_header = mapped_values.pop()
                             df_cores_lc.append(df_lc)
                             df_cores_header.append(df_header)
 
@@ -125,6 +126,7 @@ class GetElasticcData(object):
 
                     df_cores_lc.to_pickle(path_save_lc)
                     df_cores_header.to_pickle(path_save_header)
+
 
     def processing_fits(self, core_file):
         '''

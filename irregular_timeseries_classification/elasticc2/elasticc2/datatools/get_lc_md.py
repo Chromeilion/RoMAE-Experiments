@@ -1,6 +1,7 @@
 import numpy as np
 import pandas as pd
 import os
+from pathlib import Path
 
 from tqdm import tqdm
 
@@ -174,7 +175,8 @@ def check_if_nan_in_list(pd_used, columns):
 
 def processing(base_dir, target_dir):
     for fine_class in tqdm(os.listdir(base_dir)):
-
+        if Path(os.path.join(target_dir, '%s.pkl' % fine_class)).exists():
+            continue
         ###### Light curves observations ######
         # Reading and organizing
         print("- reading %s" % fine_class)

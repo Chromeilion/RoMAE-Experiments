@@ -20,17 +20,17 @@ def preprocess():
     os.makedirs('./{}'.format(path_save_fits), exist_ok=True)
 
     # -------------------------------- Download data --------------------------------#
-#    print('Downloading ELASTICC data ...')
-#    url = 'https://portal.nersc.gov/cfs/lsst/DESC_TD_PUBLIC/ELASTICC/TRAINING_SAMPLES/FULL_ELASTICC_TRAIN.tar'
-#    filename = wget.download('{}'.format(url), out='./{}/'.format(path_save_fits))
+    print('Downloading ELASTICC data ...')
+    url = 'https://portal.nersc.gov/cfs/lsst/DESC_TD_PUBLIC/ELASTICC/TRAINING_SAMPLES/FULL_ELASTICC_TRAIN.tar'
+    filename = wget.download('{}'.format(url), out='./{}/'.format(path_save_fits))
 
     # -------------------------------- Unzip data fits --------------------------------#
-#    print('Unzipping ELASTICC data ...')
-#    path_save_tar_file = './{}/FULL_ELASTICC_TRAIN.tar'.format(path_save_fits)
-#    tar = tarfile.open(path_save_tar_file)
-#    tar.extractall('./{}'.format(path_save_fits))
-#    tar.close()
-#    os.remove('./{}'.format(path_save_tar_file))
+    print('Unzipping ELASTICC data ...')
+    path_save_tar_file = './{}/FULL_ELASTICC_TRAIN.tar'.format(path_save_fits)
+    tar = tarfile.open(path_save_tar_file)
+    tar.extractall('./{}'.format(path_save_fits))
+    tar.close()
+    os.remove('./{}'.format(path_save_tar_file))
 
     # -------------------------------- Extract data --------------------------------#
     print('Extracting info from FITS ...')
