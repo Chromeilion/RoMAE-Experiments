@@ -1,17 +1,17 @@
 import argparse as ap
 
 def run_preprocess(*_, **__):
-    from Interpolation_spirals import preprocess
+    from Interpolation_Electricity import preprocess
     preprocess.preprocess()
 
 
 def run_pretrain(*_, **__):
-    from Interpolation_spirals import pretrain
+    from Interpolation_Electricity import pretrain
     pretrain.pretrain()
 
 
 def run_finetune(*_, **__):
-    from Interpolation_spirals import finetune
+    from Interpolation_Electricity import finetune
     finetune.finetune()
 
 
