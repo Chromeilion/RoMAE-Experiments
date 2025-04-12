@@ -4,7 +4,7 @@ from roma.trainer import Trainer, TrainerConfig
 from roma.utils import get_encoder_size
 import torch.nn as nn
 
-from example_experiment.example_experiment.dataset import ExampleDataset
+from example_experiment.dataset import ExampleDataset
 
 
 def finetune():

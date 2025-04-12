@@ -20,79 +20,79 @@ def preprocess():
     os.makedirs('./{}'.format(path_save_fits), exist_ok=True)
 
     # -------------------------------- Download data --------------------------------#
-    print('Downloading ELASTICC data ...')
-    url = 'https://portal.nersc.gov/cfs/lsst/DESC_TD_PUBLIC/ELASTICC/TRAINING_SAMPLES/FULL_ELASTICC_TRAIN.tar'
-    filename = wget.download('{}'.format(url), out='./{}/'.format(path_save_fits))
+#    print('Downloading ELASTICC data ...')
+#    url = 'https://portal.nersc.gov/cfs/lsst/DESC_TD_PUBLIC/ELASTICC/TRAINING_SAMPLES/FULL_ELASTICC_TRAIN.tar'
+#    filename = wget.download('{}'.format(url), out='./{}/'.format(path_save_fits))
 
     # -------------------------------- Unzip data fits --------------------------------#
-    print('Unzipping ELASTICC data ...')
-    path_save_tar_file = './{}/FULL_ELASTICC_TRAIN.tar'.format(path_save_fits)
-    tar = tarfile.open(path_save_tar_file)
-    tar.extractall('./{}'.format(path_save_fits))
-    tar.close()
-    os.remove('./{}'.format(path_save_tar_file))
+#    print('Unzipping ELASTICC data ...')
+#    path_save_tar_file = './{}/FULL_ELASTICC_TRAIN.tar'.format(path_save_fits)
+#    tar = tarfile.open(path_save_tar_file)
+#    tar.extractall('./{}'.format(path_save_fits))
+#    tar.close()
+#    os.remove('./{}'.format(path_save_tar_file))
 
     # -------------------------------- Extract data --------------------------------#
-    print('Extracting info from FITS ...')
-
-    # We recommend using 20 cores to extract the data by classes
+#    print('Extracting info from FITS ...')
+#
+#    # We recommend using 20 cores to extract the data by classes
     save_parent_file = 'data_extracted'
-    classes_to_fix = ['Cepheid', 'd-Sct']
-    sample_test = 1000
-
-    get_data = GetElasticcData(load_parent_file=path_save_fits,
-                               save_parent_file=save_parent_file,
-                               dataset_name='ELASTICC',
-                               subset_name='TRAIN',
-                               there_are_exceptions=True,
-                               aux_subset_name='TRAINFIX',
-                               which_classes=classes_to_fix)
-
-    get_data.run(multiprocess=True, num_cores=num_cores)
-
-    # We had to fix the ID of classes ['d-Sct', 'Cepheid'] because they overlapped other IDs of other classes
-    print('Fixing the IDs of classes Cepheid and d-Sct ...')
-    list_new_ids = ['1000000', '2000000']
-    for i in range(len(classes_to_fix)):
-        header_obj = pd.read_pickle(
-            './{}/{}/header_{}.pkl'.format(save_parent_file, classes_to_fix[i],
-                                           classes_to_fix[i]))
-        lc_obj = pd.read_pickle(
-            './{}/{}/lc_{}.pkl'.format(save_parent_file, classes_to_fix[i],
-                                       classes_to_fix[i]))
-
-        header_obj.SNID = header_obj.SNID.apply(
-            lambda row: list_new_ids[i] + row)
-        lc_obj.SNID = lc_obj.SNID.apply(lambda row: list_new_ids[i] + row)
-
-        header_obj.to_pickle(
-            './{}/{}/header_{}.pkl'.format(save_parent_file, classes_to_fix[i],
-                                           classes_to_fix[i]))
-        lc_obj.to_pickle(
-            './{}/{}/lc_{}.pkl'.format(save_parent_file, classes_to_fix[i],
-                                       classes_to_fix[i]))
-
-    # -------------------------------- Data processing --------------------------------#
-    print('Data processing ...')
+#    classes_to_fix = ['Cepheid', 'd-Sct']
+#    sample_test = 1000
+#
+#    get_data = GetElasticcData(load_parent_file=path_save_fits,
+#                               save_parent_file=save_parent_file,
+#                               dataset_name='ELASTICC',
+#                               subset_name='TRAIN',
+#                               there_are_exceptions=True,
+#                               aux_subset_name='TRAINFIX',
+#                               which_classes=classes_to_fix)
+#
+#    get_data.run(multiprocess=True, num_cores=num_cores)
+#
+#    # We had to fix the ID of classes ['d-Sct', 'Cepheid'] because they overlapped other IDs of other classes
+#    print('Fixing the IDs of classes Cepheid and d-Sct ...')
+#    list_new_ids = ['1000000', '2000000']
+#    for i in range(len(classes_to_fix)):
+#        header_obj = pd.read_pickle(
+#            './{}/{}/header_{}.pkl'.format(save_parent_file, classes_to_fix[i],
+#                                           classes_to_fix[i]))
+#        lc_obj = pd.read_pickle(
+#            './{}/{}/lc_{}.pkl'.format(save_parent_file, classes_to_fix[i],
+#                                       classes_to_fix[i]))
+#
+#        header_obj.SNID = header_obj.SNID.apply(
+#            lambda row: list_new_ids[i] + row)
+#        lc_obj.SNID = lc_obj.SNID.apply(lambda row: list_new_ids[i] + row)
+#
+#        header_obj.to_pickle(
+#            './{}/{}/header_{}.pkl'.format(save_parent_file, classes_to_fix[i],
+#                                           classes_to_fix[i]))
+#        lc_obj.to_pickle(
+#            './{}/{}/lc_{}.pkl'.format(save_parent_file, classes_to_fix[i],
+#                                       classes_to_fix[i]))
+#
+#    # -------------------------------- Data processing --------------------------------#
+#    print('Data processing ...')
     target_dir = 'data_processed'
-    os.makedirs(target_dir, exist_ok=True)
-
-    processing(base_dir=save_parent_file,
-               target_dir=target_dir)
-
-    # -------------------------------- Create data partition --------------------------------#
-    print('Creating data paritions ...')
+#    os.makedirs(target_dir, exist_ok=True)
+#
+#    processing(base_dir=save_parent_file,
+#               target_dir=target_dir)
+#
+#    # -------------------------------- Create data partition --------------------------------#
+#    print('Creating data paritions ...')
     save_dir = 'data_partition'
     num_folds = 5
-    os.makedirs(save_dir, exist_ok=True)
-
-    snid_per_fine_class = open_original_files(base_dir=save_parent_file)
-    snids_df = create_df_ids_labels(snid_per_fine_class)
-    partitions, blind_partitions, test_set = create_split(snids_df,
-                                                          sample_test,
-                                                          num_folds)
-    # check_partitions(snids_df, partitions, test_set, sample_test, num_folds)
-    save_partitions(save_dir, partitions, blind_partitions)
+#    os.makedirs(save_dir, exist_ok=True)
+#
+#    snid_per_fine_class = open_original_files(base_dir=save_parent_file)
+#    snids_df = create_df_ids_labels(snid_per_fine_class)
+#    partitions, blind_partitions, test_set = create_split(snids_df,
+#                                                          sample_test,
+#                                                          num_folds)
+#    # check_partitions(snids_df, partitions, test_set, sample_test, num_folds)
+#    save_partitions(save_dir, partitions, blind_partitions)
 
     # -------------------------------- Generate QT from static features (metadata) --------------------------------#
     print(
@@ -120,8 +120,8 @@ def preprocess():
                                                                 path_save_final_data)
 
     # --------------------------------  Remove generated files --------------------------------#
-    os.remove(save_parent_file)  # extracted data
-    os.remove(target_dir)  # processed data
+#    os.remove(save_parent_file)  # extracted data
+#    os.remove(target_dir)  # processed data
 
     # --------------------------------  Create final dataset --------------------------------#
     print('Creating dataset with lc and static features ...')
