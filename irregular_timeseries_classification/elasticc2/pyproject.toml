@@ -22,7 +22,7 @@ maintainers = [
     {name = "Uros Zivanovic", email = "uros.zivanovic@studenti.units.it"},
 ]
 # Add in any dependancies your experiment has here
-dependencies = ["h5py", "pandas", "numpy", "wget"]
+dependencies = ["h5py", "pandas", "numpy", "wget", "astropy"]
 
 [project.urls]
 Repository = "https://github.com/Chromeilion/RoMA-Experiments"
