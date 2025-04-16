@@ -2,6 +2,7 @@
 A simple example dataset.
 """
 import torch
+import torch.nn as nn
 from torch.utils.data.dataset import Dataset
 import h5py
 from roma.utils import gen_mask
@@ -34,18 +35,25 @@ class Elasticc2Dataset(Dataset):
     def __getitem__(self, index):
         # A random value between 0 and 100
         idx = self.idxs[index]
-        data = torch.tensor(self.file["data"][idx].flatten()[..., None, None, None])
+        data = torch.tensor(self.file["data"][idx].flatten())
         times = torch.tensor(self.file["time"][idx].flatten())
         pad_mask = (torch.tensor(self.file["mask"][idx]) > 0.5).flatten()
         label = torch.tensor(self.file["labels"][idx])
         bands = torch.arange(0, 6).repeat(data.shape[0]//6)
         positions = torch.stack([bands, times])
-        mask = gen_mask(self.mask_ratio, pad_mask[None, ...])
+
+        n_nonpad = pad_mask.sum()
+        positions = nn.functional.pad(positions[:, pad_mask], (0, positions.shape[1]-n_nonpad)).float()
+        data = nn.functional.pad(data[pad_mask], (0, data.shape[0]-n_nonpad))[..., None, None, None].float()
+        pad_mask[:] = False
+        pad_mask[:n_nonpad] = True
+        mask = gen_mask(self.mask_ratio, pad_mask[None, ...], single=True).squeeze()
 
         sample = {
             "values": data,
             "positions": positions,
             "label": label,
             "mask": mask,
+            "pad_mask": pad_mask
         }
         return sample
