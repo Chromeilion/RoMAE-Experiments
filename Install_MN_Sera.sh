@@ -61,7 +61,7 @@ echo "Done creating virtual environment in .venv!"
 echo "To use the virtualenv, first load the correct modules:"
 echo "module load mkl/2024.0 intel impi hdf5/1.14.1-2-gcc python/3.11.5-gcc nvidia-hpc-sdk/23.11-cuda11.8 openblas/0.3.27-gcc cudnn/9.0.0-cuda11 tensorrt/10.0.0-cuda11 impi/2021.11 gcc/11.4.0 nccl/2.19.4 pytorch/2.4.0"
 echo "Then activate it:"
-echo "source .Seraenv6/bin/activate"
+echo "source .venv/bin/activate"
 echo "Once this is done, you can install RoMA by moving to the directory with the package in it and running:"
 echo "pip install -e . --no-index --no-build-isolation"
 echo "Good luck with your research!
