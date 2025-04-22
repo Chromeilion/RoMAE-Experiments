@@ -5,6 +5,7 @@ from torchvision import transforms
 import torchvision.transforms.functional as F
 from torchvision.transforms import v2 
 import torch
+import numpy as np
 
 class TrainDataset(Dataset):
     def __init__(self, folder_path, transform=None, nmax = None):
@@ -19,8 +20,7 @@ class TrainDataset(Dataset):
             self.nmax = nmax
         else:
             self.nmax = len(image_paths)
-        aux_ind = np.random.choice(np.arange(len(self.image_path)), size = self.nmax)
-        self.image_paths = image_paths[aux_ind] 
+        self.image_paths = np.random.choice(image_paths, size = self.nmax, replace = False)
         self.label = 0  # Puedes usar 0 para "LAB", o cambiarlo según tu necesidad
 
     def __len__(self):
