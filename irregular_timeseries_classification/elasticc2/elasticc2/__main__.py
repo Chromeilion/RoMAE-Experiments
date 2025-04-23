@@ -5,6 +5,11 @@ def run_preprocess(*_, **__):
     preprocess.preprocess()
 
 
+def run_evaluate(*_, **__):
+    from elasticc2 import evaluate
+    evaluate.evaluate()
+
+
 def run_pretrain(*_, **__):
     from elasticc2 import pretrain
     pretrain.pretrain()
@@ -30,6 +35,9 @@ if __name__ == '__main__':
 
     pretrain = subparsers.add_parser("finetune")
     pretrain.set_defaults(func=run_finetune)
+
+    pretrain = subparsers.add_parser("evaluate")
+    pretrain.set_defaults(func=run_evaluate)
 
     args = parser.parse_args()
     args.func(args)
