@@ -21,8 +21,7 @@ def evaluate():
     all_labels = []
     with (
         Elasticc2Dataset(config.dataset_location, split_no=0,
-                         split_type="test",
-                         normalize_per_sample=config.normalize_per_sample) as test_dataset,
+                         split_type="test") as test_dataset,
     ):
         dataloader = DataLoader(
             test_dataset,
