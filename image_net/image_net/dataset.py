@@ -38,7 +38,7 @@ class TrainDataset(Dataset):
         if self.transform:
             image = self.transform(image)
         mask = gen_mask(mask_ratio=self.mask_ratio, pad_mask = self.pad_mask[None,...], single=True).squeeze()
-        output_dict = {'values':image, 'label':label, 'mask':mask, 'positions':self.positions}
+        output_dict = {'values':image[None,...], 'label':label, 'mask':mask, 'positions':self.positions}
         return output_dict
 
 class TestDataset(Dataset):
@@ -48,7 +48,7 @@ class TestDataset(Dataset):
         image_paths = [
             os.path.join(folder_path + '/ILSVRC2012_img_val/', fname)
             for fname in os.listdir(folder_path + '/ILSVRC2012_img_val/')
-            if fname.startswith("n") and fname.endswith(".JPEG")
+            if fname.endswith(".JPEG")
         ]
         if nmax is not None: 
             self.nmax = nmax
@@ -73,7 +73,7 @@ class TestDataset(Dataset):
             image = self.transform(image)
 
         mask = gen_mask(mask_ratio=self.mask_ratio, pad_mask = self.pad_mask[None,...], single=True).squeeze()
-        output_dict = {'values':image, 'label':label, 'mask':mask, 'positions':self.positions}
+        output_dict = {'values':image[None,...], 'label':label, 'mask':mask, 'positions':self.positions}
         return output_dict
 
 

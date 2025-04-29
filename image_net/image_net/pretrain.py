@@ -14,19 +14,21 @@ transform = transforms.Compose([
 
 def pretrain():
     # Let's use the tiny model:
-    encoder_args = get_encoder_size("RoMA-tiny")
+    encoder_args = get_encoder_size("RoMA-base")
 
     model_config = RoMAForPreTrainingConfig(
         encoder_config=EncoderConfig(**encoder_args),
-        tubelet_size=(1, 2, 1),
+        tubelet_size=(1, 16, 16),
         n_channels=3,
-        n_pos_dims=1
+        n_pos_dims=2,
+        normalize_targets = True,
+        use_cls=False
     )
 
     # HAve beelow in the ENV (not everything)
     model          = RoMAForPreTraining(model_config)
     model.set_loss_fn(nn.MSELoss())
-    trainer_config = TrainerConfig(project_name="Image_net")
+    trainer_config = TrainerConfig(project_name="Image_net_pretrain")
 
     trainer       = Trainer(trainer_config)
     test_dataset  = TestDataset('/gpfs/projects/ehpc10/imageNet/', transform, nmax = 1000)
