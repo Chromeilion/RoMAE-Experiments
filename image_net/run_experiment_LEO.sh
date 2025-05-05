@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH --partition=boost_usr_prod
 #SBATCH --job-name=roma-train
-#SBATCH --nodes=1
+#SBATCH --nodes=8
 #SBATCH --ntasks-per-node=1
 #SBATCH --cpus-per-task=32
 #SBATCH --time=04:00:00
