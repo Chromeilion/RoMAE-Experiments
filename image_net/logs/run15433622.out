@@ -1,0 +1,219 @@
+Master address: lrdn0078
+Master port: 6000
+Machine rank: 15433622
+Num processes: 4
+Num machines: 1
+Running command: accelerate launch     --main_process_ip lrdn0078     --main_process_port 6000     --machine_rank $SLURM_PROCID     --num_processes 4     --num_machines 1     --multi_gpu     --enable_cpu_affinity     --num_cpu_threads_per_process 8     --module     --rdzv_backend c10d     --dynamo_mode default     --mixed_precision bf16     --dynamo_backend inductor      image_net pretrain
+W0505 15:23:26.904000 422845 torch/distributed/run.py:758] master_addr is only used for static rdzv_backend and when rdzv_endpoint is not specified.
+Detected kernel version 4.18.0, which is below the recommended minimum of 5.5.0; this can cause the process to hang. It is recommended to upgrade the kernel to the minimum version or higher.
+wandb: Network error (ConnectionError), entering retry loop.
+wandb: W&B API key is configured. Use `wandb login --relogin` to force relogin
+wandb: Network error (ConnectionError), entering retry loop.
+wandb: ERROR Run initialization has timed out after 90.0 sec. Please try increasing the timeout with the `init_timeout` setting: `wandb.init(settings=wandb.Settings(init_timeout=120))`.
+Traceback (most recent call last):
+  File "/leonardo/prod/spack/5.2/install/0.21/linux-rhel8-icelake/gcc-8.5.0/python-3.11.6-i5k3c6ggftqkzgqyymfbkynpgm2lgjtd/lib/python3.11/asyncio/tasks.py", line 500, in wait_for
+    return fut.result()
+           ^^^^^^^^^^^^
+  File "/leonardo/prod/spack/5.2/install/0.21/linux-rhel8-icelake/gcc-8.5.0/python-3.11.6-i5k3c6ggftqkzgqyymfbkynpgm2lgjtd/lib/python3.11/asyncio/locks.py", line 213, in wait
+    await fut
+asyncio.exceptions.CancelledError
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/leonardo/home/userexternal/mdelosri/imageNet/.venv/lib/python3.11/site-packages/wandb/sdk/mailbox/response_handle.py", line 109, in wait_async
+    await asyncio.wait_for(evt.wait(), timeout=timeout)
+  File "/leonardo/prod/spack/5.2/install/0.21/linux-rhel8-icelake/gcc-8.5.0/python-3.11.6-i5k3c6ggftqkzgqyymfbkynpgm2lgjtd/lib/python3.11/asyncio/tasks.py", line 502, in wait_for
+    raise exceptions.TimeoutError() from exc
+TimeoutError
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/leonardo/home/userexternal/mdelosri/imageNet/.venv/lib/python3.11/site-packages/wandb/sdk/wandb_init.py", line 1052, in init
+    result = wait_with_progress(
+             ^^^^^^^^^^^^^^^^^^^
+  File "/leonardo/home/userexternal/mdelosri/imageNet/.venv/lib/python3.11/site-packages/wandb/sdk/mailbox/wait_with_progress.py", line 24, in wait_with_progress
+    return wait_all_with_progress(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/leonardo/home/userexternal/mdelosri/imageNet/.venv/lib/python3.11/site-packages/wandb/sdk/mailbox/wait_with_progress.py", line 87, in wait_all_with_progress
+    return asyncio_compat.run(progress_loop_with_timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/leonardo/home/userexternal/mdelosri/imageNet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/asyncio_compat.py", line 30, in run
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/leonardo/prod/spack/5.2/install/0.21/linux-rhel8-icelake/gcc-8.5.0/python-3.11.6-i5k3c6ggftqkzgqyymfbkynpgm2lgjtd/lib/python3.11/concurrent/futures/_base.py", line 456, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/leonardo/prod/spack/5.2/install/0.21/linux-rhel8-icelake/gcc-8.5.0/python-3.11.6-i5k3c6ggftqkzgqyymfbkynpgm2lgjtd/lib/python3.11/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/leonardo/prod/spack/5.2/install/0.21/linux-rhel8-icelake/gcc-8.5.0/python-3.11.6-i5k3c6ggftqkzgqyymfbkynpgm2lgjtd/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/leonardo/home/userexternal/mdelosri/imageNet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/asyncio_compat.py", line 74, in run
+    return asyncio.run(self._run_or_cancel(fn))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/leonardo/prod/spack/5.2/install/0.21/linux-rhel8-icelake/gcc-8.5.0/python-3.11.6-i5k3c6ggftqkzgqyymfbkynpgm2lgjtd/lib/python3.11/asyncio/runners.py", line 190, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "/leonardo/prod/spack/5.2/install/0.21/linux-rhel8-icelake/gcc-8.5.0/python-3.11.6-i5k3c6ggftqkzgqyymfbkynpgm2lgjtd/lib/python3.11/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/leonardo/prod/spack/5.2/install/0.21/linux-rhel8-icelake/gcc-8.5.0/python-3.11.6-i5k3c6ggftqkzgqyymfbkynpgm2lgjtd/lib/python3.11/asyncio/base_events.py", line 653, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/leonardo/home/userexternal/mdelosri/imageNet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/asyncio_compat.py", line 98, in _run_or_cancel
+    return fn_task.result()
+           ^^^^^^^^^^^^^^^^
+  File "/leonardo/home/userexternal/mdelosri/imageNet/.venv/lib/python3.11/site-packages/wandb/sdk/mailbox/wait_with_progress.py", line 82, in progress_loop_with_timeout
+    return await _wait_handles_async(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/leonardo/home/userexternal/mdelosri/imageNet/.venv/lib/python3.11/site-packages/wandb/sdk/mailbox/wait_with_progress.py", line 130, in _wait_handles_async
+    async with asyncio_compat.open_task_group() as task_group:
+  File "/leonardo/prod/spack/5.2/install/0.21/linux-rhel8-icelake/gcc-8.5.0/python-3.11.6-i5k3c6ggftqkzgqyymfbkynpgm2lgjtd/lib/python3.11/contextlib.py", line 211, in __aexit__
+    await anext(self.gen)
+  File "/leonardo/home/userexternal/mdelosri/imageNet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/asyncio_compat.py", line 190, in open_task_group
+    await task_group._wait_all()
+  File "/leonardo/home/userexternal/mdelosri/imageNet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/asyncio_compat.py", line 159, in _wait_all
+    raise exc
+  File "/leonardo/home/userexternal/mdelosri/imageNet/.venv/lib/python3.11/site-packages/wandb/sdk/mailbox/wait_with_progress.py", line 128, in wait_single
+    results[index] = await handle.wait_async(timeout=timeout)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/leonardo/home/userexternal/mdelosri/imageNet/.venv/lib/python3.11/site-packages/wandb/sdk/mailbox/mailbox_handle.py", line 126, in wait_async
+    response = await self._handle.wait_async(timeout=timeout)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/leonardo/home/userexternal/mdelosri/imageNet/.venv/lib/python3.11/site-packages/wandb/sdk/mailbox/response_handle.py", line 118, in wait_async
+    raise TimeoutError(
+TimeoutError: Timed out waiting for response on nbetq24t1xtr
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/leonardo/home/userexternal/mdelosri/imageNet/RoMA-Experiments/image_net/image_net/__main__.py", line 35, in <module>
+    args.func(args)
+  File "/leonardo/home/userexternal/mdelosri/imageNet/RoMA-Experiments/image_net/image_net/__main__.py", line 10, in run_pretrain
+    pretrain.pretrain()
+  File "/leonardo/home/userexternal/mdelosri/imageNet/RoMA-Experiments/image_net/image_net/pretrain.py", line 36, in pretrain
+    trainer.train(
+  File "/leonardo/home/userexternal/mdelosri/imageNet/RoMA/roma/trainer.py", line 178, in train
+    self.init_wandb(accelerator=accelerator, model=model)
+  File "/leonardo/home/userexternal/mdelosri/imageNet/RoMA/roma/trainer.py", line 110, in init_wandb
+    self.run = wandb.init(
+               ^^^^^^^^^^^
+  File "/leonardo/home/userexternal/mdelosri/imageNet/.venv/lib/python3.11/site-packages/wandb/sdk/wandb_init.py", line 1664, in init
+    wandb._sentry.reraise(e)
+  File "/leonardo/home/userexternal/mdelosri/imageNet/.venv/lib/python3.11/site-packages/wandb/analytics/sentry.py", line 156, in reraise
+    raise exc.with_traceback(sys.exc_info()[2])
+  File "/leonardo/home/userexternal/mdelosri/imageNet/.venv/lib/python3.11/site-packages/wandb/sdk/wandb_init.py", line 1650, in init
+    return wi.init(run_settings, run_config, run_printer)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/leonardo/home/userexternal/mdelosri/imageNet/.venv/lib/python3.11/site-packages/wandb/sdk/wandb_init.py", line 1065, in init
+    raise CommError(
+wandb.errors.errors.CommError: Run initialization has timed out after 90.0 sec. Please try increasing the timeout with the `init_timeout` setting: `wandb.init(settings=wandb.Settings(init_timeout=120))`.
+[rank0]: Traceback (most recent call last):
+[rank0]:   File "/leonardo/prod/spack/5.2/install/0.21/linux-rhel8-icelake/gcc-8.5.0/python-3.11.6-i5k3c6ggftqkzgqyymfbkynpgm2lgjtd/lib/python3.11/asyncio/tasks.py", line 500, in wait_for
+[rank0]:     return fut.result()
+[rank0]:            ^^^^^^^^^^^^
+[rank0]:   File "/leonardo/prod/spack/5.2/install/0.21/linux-rhel8-icelake/gcc-8.5.0/python-3.11.6-i5k3c6ggftqkzgqyymfbkynpgm2lgjtd/lib/python3.11/asyncio/locks.py", line 213, in wait
+[rank0]:     await fut
+[rank0]: asyncio.exceptions.CancelledError
+
+[rank0]: The above exception was the direct cause of the following exception:
+
+[rank0]: Traceback (most recent call last):
+[rank0]:   File "/leonardo/home/userexternal/mdelosri/imageNet/.venv/lib/python3.11/site-packages/wandb/sdk/mailbox/response_handle.py", line 109, in wait_async
+[rank0]:     await asyncio.wait_for(evt.wait(), timeout=timeout)
+[rank0]:   File "/leonardo/prod/spack/5.2/install/0.21/linux-rhel8-icelake/gcc-8.5.0/python-3.11.6-i5k3c6ggftqkzgqyymfbkynpgm2lgjtd/lib/python3.11/asyncio/tasks.py", line 502, in wait_for
+[rank0]:     raise exceptions.TimeoutError() from exc
+[rank0]: TimeoutError
+
+[rank0]: The above exception was the direct cause of the following exception:
+
+[rank0]: Traceback (most recent call last):
+[rank0]:   File "/leonardo/home/userexternal/mdelosri/imageNet/.venv/lib/python3.11/site-packages/wandb/sdk/wandb_init.py", line 1052, in init
+[rank0]:     result = wait_with_progress(
+[rank0]:              ^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/leonardo/home/userexternal/mdelosri/imageNet/.venv/lib/python3.11/site-packages/wandb/sdk/mailbox/wait_with_progress.py", line 24, in wait_with_progress
+[rank0]:     return wait_all_with_progress(
+[rank0]:            ^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/leonardo/home/userexternal/mdelosri/imageNet/.venv/lib/python3.11/site-packages/wandb/sdk/mailbox/wait_with_progress.py", line 87, in wait_all_with_progress
+[rank0]:     return asyncio_compat.run(progress_loop_with_timeout)
+[rank0]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/leonardo/home/userexternal/mdelosri/imageNet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/asyncio_compat.py", line 30, in run
+[rank0]:     return future.result()
+[rank0]:            ^^^^^^^^^^^^^^^
+[rank0]:   File "/leonardo/prod/spack/5.2/install/0.21/linux-rhel8-icelake/gcc-8.5.0/python-3.11.6-i5k3c6ggftqkzgqyymfbkynpgm2lgjtd/lib/python3.11/concurrent/futures/_base.py", line 456, in result
+[rank0]:     return self.__get_result()
+[rank0]:            ^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/leonardo/prod/spack/5.2/install/0.21/linux-rhel8-icelake/gcc-8.5.0/python-3.11.6-i5k3c6ggftqkzgqyymfbkynpgm2lgjtd/lib/python3.11/concurrent/futures/_base.py", line 401, in __get_result
+[rank0]:     raise self._exception
+[rank0]:   File "/leonardo/prod/spack/5.2/install/0.21/linux-rhel8-icelake/gcc-8.5.0/python-3.11.6-i5k3c6ggftqkzgqyymfbkynpgm2lgjtd/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+[rank0]:     result = self.fn(*self.args, **self.kwargs)
+[rank0]:              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/leonardo/home/userexternal/mdelosri/imageNet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/asyncio_compat.py", line 74, in run
+[rank0]:     return asyncio.run(self._run_or_cancel(fn))
+[rank0]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/leonardo/prod/spack/5.2/install/0.21/linux-rhel8-icelake/gcc-8.5.0/python-3.11.6-i5k3c6ggftqkzgqyymfbkynpgm2lgjtd/lib/python3.11/asyncio/runners.py", line 190, in run
+[rank0]:     return runner.run(main)
+[rank0]:            ^^^^^^^^^^^^^^^^
+[rank0]:   File "/leonardo/prod/spack/5.2/install/0.21/linux-rhel8-icelake/gcc-8.5.0/python-3.11.6-i5k3c6ggftqkzgqyymfbkynpgm2lgjtd/lib/python3.11/asyncio/runners.py", line 118, in run
+[rank0]:     return self._loop.run_until_complete(task)
+[rank0]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/leonardo/prod/spack/5.2/install/0.21/linux-rhel8-icelake/gcc-8.5.0/python-3.11.6-i5k3c6ggftqkzgqyymfbkynpgm2lgjtd/lib/python3.11/asyncio/base_events.py", line 653, in run_until_complete
+[rank0]:     return future.result()
+[rank0]:            ^^^^^^^^^^^^^^^
+[rank0]:   File "/leonardo/home/userexternal/mdelosri/imageNet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/asyncio_compat.py", line 98, in _run_or_cancel
+[rank0]:     return fn_task.result()
+[rank0]:            ^^^^^^^^^^^^^^^^
+[rank0]:   File "/leonardo/home/userexternal/mdelosri/imageNet/.venv/lib/python3.11/site-packages/wandb/sdk/mailbox/wait_with_progress.py", line 82, in progress_loop_with_timeout
+[rank0]:     return await _wait_handles_async(
+[rank0]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/leonardo/home/userexternal/mdelosri/imageNet/.venv/lib/python3.11/site-packages/wandb/sdk/mailbox/wait_with_progress.py", line 130, in _wait_handles_async
+[rank0]:     async with asyncio_compat.open_task_group() as task_group:
+[rank0]:   File "/leonardo/prod/spack/5.2/install/0.21/linux-rhel8-icelake/gcc-8.5.0/python-3.11.6-i5k3c6ggftqkzgqyymfbkynpgm2lgjtd/lib/python3.11/contextlib.py", line 211, in __aexit__
+[rank0]:     await anext(self.gen)
+[rank0]:   File "/leonardo/home/userexternal/mdelosri/imageNet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/asyncio_compat.py", line 190, in open_task_group
+[rank0]:     await task_group._wait_all()
+[rank0]:   File "/leonardo/home/userexternal/mdelosri/imageNet/.venv/lib/python3.11/site-packages/wandb/sdk/lib/asyncio_compat.py", line 159, in _wait_all
+[rank0]:     raise exc
+[rank0]:   File "/leonardo/home/userexternal/mdelosri/imageNet/.venv/lib/python3.11/site-packages/wandb/sdk/mailbox/wait_with_progress.py", line 128, in wait_single
+[rank0]:     results[index] = await handle.wait_async(timeout=timeout)
+[rank0]:                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/leonardo/home/userexternal/mdelosri/imageNet/.venv/lib/python3.11/site-packages/wandb/sdk/mailbox/mailbox_handle.py", line 126, in wait_async
+[rank0]:     response = await self._handle.wait_async(timeout=timeout)
+[rank0]:                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/leonardo/home/userexternal/mdelosri/imageNet/.venv/lib/python3.11/site-packages/wandb/sdk/mailbox/response_handle.py", line 118, in wait_async
+[rank0]:     raise TimeoutError(
+[rank0]: TimeoutError: Timed out waiting for response on nbetq24t1xtr
+
+[rank0]: During handling of the above exception, another exception occurred:
+
+[rank0]: Traceback (most recent call last):
+[rank0]:   File "<frozen runpy>", line 198, in _run_module_as_main
+[rank0]:   File "<frozen runpy>", line 88, in _run_code
+[rank0]:   File "/leonardo/home/userexternal/mdelosri/imageNet/RoMA-Experiments/image_net/image_net/__main__.py", line 35, in <module>
+[rank0]:     args.func(args)
+[rank0]:   File "/leonardo/home/userexternal/mdelosri/imageNet/RoMA-Experiments/image_net/image_net/__main__.py", line 10, in run_pretrain
+[rank0]:     pretrain.pretrain()
+[rank0]:   File "/leonardo/home/userexternal/mdelosri/imageNet/RoMA-Experiments/image_net/image_net/pretrain.py", line 36, in pretrain
+[rank0]:     trainer.train(
+[rank0]:   File "/leonardo/home/userexternal/mdelosri/imageNet/RoMA/roma/trainer.py", line 178, in train
+[rank0]:     self.init_wandb(accelerator=accelerator, model=model)
+[rank0]:   File "/leonardo/home/userexternal/mdelosri/imageNet/RoMA/roma/trainer.py", line 110, in init_wandb
+[rank0]:     self.run = wandb.init(
+[rank0]:                ^^^^^^^^^^^
+[rank0]:   File "/leonardo/home/userexternal/mdelosri/imageNet/.venv/lib/python3.11/site-packages/wandb/sdk/wandb_init.py", line 1664, in init
+[rank0]:     wandb._sentry.reraise(e)
+[rank0]:   File "/leonardo/home/userexternal/mdelosri/imageNet/.venv/lib/python3.11/site-packages/wandb/analytics/sentry.py", line 156, in reraise
+[rank0]:     raise exc.with_traceback(sys.exc_info()[2])
+[rank0]:   File "/leonardo/home/userexternal/mdelosri/imageNet/.venv/lib/python3.11/site-packages/wandb/sdk/wandb_init.py", line 1650, in init
+[rank0]:     return wi.init(run_settings, run_config, run_printer)
+[rank0]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/leonardo/home/userexternal/mdelosri/imageNet/.venv/lib/python3.11/site-packages/wandb/sdk/wandb_init.py", line 1065, in init
+[rank0]:     raise CommError(
+[rank0]: wandb.errors.errors.CommError: Run initialization has timed out after 90.0 sec. Please try increasing the timeout with the `init_timeout` setting: `wandb.init(settings=wandb.Settings(init_timeout=120))`.
+srun: Job step aborted: Waiting up to 92 seconds for job step to finish.
+slurmstepd: error: *** JOB 15433622 ON lrdn0078 CANCELLED AT 2025-05-05T15:30:51 ***
+slurmstepd: error: *** STEP 15433622.0 ON lrdn0078 CANCELLED AT 2025-05-05T15:30:51 ***
