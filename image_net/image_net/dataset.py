@@ -46,8 +46,8 @@ class TestDataset(Dataset):
         self.folder_path = folder_path
         self.transform = transform
         image_paths = [
-            os.path.join(folder_path + '/ILSVRC2012_img_val/', fname)
-            for fname in os.listdir(folder_path + '/ILSVRC2012_img_val/')
+            os.path.join(folder_path + '/testimages/', fname)
+            for fname in os.listdir(folder_path + '/testimages/')
             if fname.endswith(".JPEG")
         ]
         if nmax is not None: 

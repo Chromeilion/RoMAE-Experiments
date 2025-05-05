@@ -31,8 +31,8 @@ def pretrain():
     trainer_config = TrainerConfig(project_name="Image_net_pretrain")
 
     trainer       = Trainer(trainer_config)
-    test_dataset  = TestDataset('/gpfs/projects/ehpc10/imageNet/', transform, nmax = 1000)
-    train_dataset = TrainDataset('/gpfs/projects/ehpc10/imageNet/ILSVRC2012_img_train/images/', transform = transform, nmax = 1000)
+    test_dataset  = TestDataset('/leonardo_work/Sis25_trotta/imageNET/data/', transform, nmax = 2048)
+    train_dataset = TrainDataset('/leonardo_work/Sis25_trotta/imageNET/data/trainimages/', transform = transform, nmax = 2048)
     trainer.train(
         train_dataset=train_dataset,
         test_dataset=test_dataset,
