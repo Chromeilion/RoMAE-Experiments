@@ -4,13 +4,13 @@ build-backend = "setuptools.build_meta"
 
 [tool.setuptools.packages.find]
 # Change this to the name of the directory containing the python package
-include = ["lsst"]
+include = ["uea"]
 
 [project]
 # Change this to the name of the experiment
-name = "lsst"
+name = "uea"
 # Set this to a description of the experiment
-description = "Train RoMA on the LSST dataset."
+description = "Train RoMA on various UEA datasets."
 
 version = "0.0.1"
 readme = "README.md"
@@ -22,7 +22,7 @@ maintainers = [
     {name = "Uros Zivanovic", email = "uros.zivanovic@studenti.units.it"},
 ]
 # Add in any dependancies your experiment has here
-dependencies = ["scipy"]
+dependencies = ["scipy", "tqdm", "torch", "scikit-learn"]
 
 [project.urls]
 Repository = "https://github.com/Chromeilion/RoMA-Experiments"
