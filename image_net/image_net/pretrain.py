@@ -1,11 +1,15 @@
 from roma.model import (RoMAForPreTraining,RoMAForPreTrainingConfig, EncoderConfig)
 from roma.trainer import Trainer, TrainerConfig
 from roma.utils import get_encoder_size
+from torch.utils.data import Dataset, DataLoader
 import torch.nn as nn
 from torchvision import transforms
 import torchvision.transforms.functional as F
 from torchvision.transforms import v2
 from image_net.dataset import TrainDataset, TestDataset
+from PIL import ImageFile
+
+ImageFile.LOAD_TRUNCATED_IMAGES=True
 
 transform = transforms.Compose([
     v2.RandomResizedCrop(size=(224, 224), antialias=True),
@@ -33,6 +37,25 @@ def pretrain():
     trainer       = Trainer(trainer_config)
     test_dataset  = TestDataset('/leonardo_work/Sis25_trotta/imageNET/data/', transform)
     train_dataset = TrainDataset('/leonardo_work/Sis25_trotta/imageNET/data/trainimages/', transform = transform)
+    
+    ##print('Training set')
+    ##dataloader = DataLoader(train_dataset, batch_size=1024, num_workers = 20)
+    ##c = 0
+    ##for batch in dataloader:
+    ##    # Suponiendo que el dataloader devuelve inputs y labels
+    ##    x = batch
+    ##    c += 1
+    ##    if c%100 == 0: print('train', str(c))
+
+
+    ##print('Testing set')
+    ##dataloader = DataLoader(test_dataset, batch_size=1024, num_workers = 20)
+    ##c = 0
+    ##for batch in dataloader:
+    ##    # Suponiendo que el dataloader devuelve inputs y labels
+    ##    x = batch
+    ##    c += 1
+    ##    if c%100 == 0: print('test', str(c))
     trainer.train(
         train_dataset=train_dataset,
         test_dataset=test_dataset,
