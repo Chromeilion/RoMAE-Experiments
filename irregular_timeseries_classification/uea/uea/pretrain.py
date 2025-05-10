@@ -38,7 +38,8 @@ def pretrain():
             "ft_label_smoothing": 0.1,
             "ft_drop_path": 0.,
             "ft_hidden_drop_rate": 0.,
-            "ft_attn_drop_rate": 0.
+            "ft_attn_drop_rate": 0.,
+            "ft_warmup_percentage": 0.1
         },
         {
             "dataset": "BasicMotions",
@@ -55,7 +56,8 @@ def pretrain():
             "ft_label_smoothing": 0.,
             "ft_drop_path": 0.,
             "ft_hidden_drop_rate": 0.,
-            "ft_attn_drop_rate": 0.
+            "ft_attn_drop_rate": 0.,
+            "ft_warmup_percentage": 0.1
         },
         {
             "dataset": "LSST",
@@ -72,7 +74,7 @@ def pretrain():
             "ft_label_smoothing": 0.1,
             "ft_drop_path": 0.2,
             "ft_hidden_drop_rate": 0.2,
-            "ft_attn_drop_rate": 0.2
+            "ft_attn_drop_rate": 0.2,
             "ft_warmup_percentage": 0.1
         },
         {
@@ -90,7 +92,7 @@ def pretrain():
             "ft_label_smoothing": 0.2,
             "ft_drop_path": 0.2,
             "ft_hidden_drop_rate": 0.2,
-            "ft_attn_drop_rate": 0.2
+            "ft_attn_drop_rate": 0.2,
             "ft_warmup_percentage": 0.1
         },
         {
