@@ -15,4 +15,4 @@ class TinyImagenetConfig(BaseSettings):
     dataset_location: str
     seed: int = 42
     pretrained_checkpoint: Optional[str] = None
-    n_classes: int = 20
+    n_classes: int = 200

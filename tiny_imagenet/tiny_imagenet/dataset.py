@@ -1,24 +1,28 @@
-from pathlib import Path
-
 from torch.utils.data import Dataset
-from tinyimagenet import TinyImageNet
 import torch
 import torchvision.transforms.v2 as v2
 from roma.utils import gen_mask
 
 
 class CustomTinyImagenet(Dataset):
-    def __init__(self, inner_ds):
+    def __init__(self, inner_ds, dataaug=False, highres=True):
         self.inner_ds = inner_ds
         mean = [0.485, 0.456, 0.406]
         std = [0.229, 0.224, 0.225]
-        self.transform = v2.Compose([
+        tokens_per_dim = 4 if not highres else 14
+        self.positions = torch.tensor([(i, j) for i in range(tokens_per_dim) for j in range(tokens_per_dim)]).T
+        self.mask_ratio = 0.75
+        self.fake_pad = torch.zeros((1, tokens_per_dim**2), dtype=torch.bool)
+        transforms = []
+        if dataaug:
+            transforms.append(v2.RandAugment())
+        if highres:
+            transforms.append(v2.Resize(224))
+        transforms.extend([
             v2.Normalize(mean=mean, std=std),
             v2.ToDtype(torch.float32, scale=True)
         ])
-        self.positions = torch.tensor([(i, j) for i in range(4) for j in range(4)]).T
-        self.mask_ratio = 0.75
-        self.fake_pad = torch.zeros((1, 16), dtype=torch.bool)
+        self.transform = v2.Compose(transforms)
 
     def __len__(self):
         return len(self.inner_ds)
