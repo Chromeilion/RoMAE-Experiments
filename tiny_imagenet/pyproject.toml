@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools", "setuptools-scm"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+# Change this to the name of the directory containing the python package
+include = ["tiny_imagenet"]
+
+[project]
+# Change this to the name of the experiment
+name = "tiny_imagenet"
+# Set this to a description of the experiment
+description = "Pre-Training + training for tiny-imagenet"
+
+version = "0.0.1"
+readme = "README.md"
+requires-python = ">=3.11"
+authors = [
+    {name = "Uros Zivanovic", email = "uros.zivanovic@studenti.units.it"},
+]
+maintainers = [
+    {name = "Uros Zivanovic", email = "uros.zivanovic@studenti.units.it"},
+]
+# Add in any dependancies your experiment has here
+dependencies = ["tinyimagenet", "scikit-learn"]
+
+[project.urls]
+Repository = "https://github.com/Chromeilion/RoMA-Experiments"

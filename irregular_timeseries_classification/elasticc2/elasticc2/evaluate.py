@@ -40,5 +40,6 @@ def evaluate():
         all_labels,
         all_preds,
         labels=list(range(20)),
-        target_names=config.class_names
+        target_names=config.class_names,
+        digits=4
     ))
