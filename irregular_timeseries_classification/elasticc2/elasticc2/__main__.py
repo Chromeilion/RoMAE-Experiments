@@ -4,6 +4,9 @@ def run_preprocess(*_, **__):
     from elasticc2 import preprocess
     preprocess.preprocess()
 
+def run_plot(*_, **__):
+    from elasticc2 import plot
+    plot.plot()
 
 def run_evaluate(*_, **__):
     from elasticc2 import evaluate
@@ -38,6 +41,9 @@ if __name__ == '__main__':
 
     pretrain = subparsers.add_parser("evaluate")
     pretrain.set_defaults(func=run_evaluate)
+
+    pretrain = subparsers.add_parser("plot")
+    pretrain.set_defaults(func=run_plot)
 
     args = parser.parse_args()
     args.func(args)

@@ -16,7 +16,7 @@ def finetune():
         tubelet_size=(2, 1, 1),
         dim_output=1,
         n_channels=1,
-        n_pos_dims=1
+        n_pos_dims=1,
     )
     model = RoMAForClassification(model_config)
     model.set_loss_fn(nn.MSELoss())
