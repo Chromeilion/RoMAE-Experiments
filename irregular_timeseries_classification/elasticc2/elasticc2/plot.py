@@ -32,7 +32,7 @@ def plot():
             h, l = ax[i].get_legend_handles_labels()
             labels.extend(l)
             handles.extend(h)
-        fig.tight_layout(rect=[0.04, 0.02, .88, 1])
+        fig.tight_layout(rect=[0.04, 0.02, .92, 1])
         fig.legend(handles, labels, loc='outside right center', ncol=1)
         ax[-1].set_xlabel("Time (days)")
         fig.supylabel("Normalized Flux Difference")
