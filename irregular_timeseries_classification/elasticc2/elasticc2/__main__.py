@@ -1,17 +1,25 @@
 import argparse as ap
 
 def run_preprocess(*_, **__):
-    from example_experiment import preprocess
+    from elasticc2 import preprocess
     preprocess.preprocess()
+
+def run_plot(*_, **__):
+    from elasticc2 import plot
+    plot.plot()
+
+def run_evaluate(*_, **__):
+    from elasticc2 import evaluate
+    evaluate.evaluate()
 
 
 def run_pretrain(*_, **__):
-    from example_experiment import pretrain
+    from elasticc2 import pretrain
     pretrain.pretrain()
 
 
 def run_finetune(*_, **__):
-    from example_experiment import finetune
+    from elasticc2 import finetune
     finetune.finetune()
 
 
@@ -30,6 +38,12 @@ if __name__ == '__main__':
 
     pretrain = subparsers.add_parser("finetune")
     pretrain.set_defaults(func=run_finetune)
+
+    pretrain = subparsers.add_parser("evaluate")
+    pretrain.set_defaults(func=run_evaluate)
+
+    pretrain = subparsers.add_parser("plot")
+    pretrain.set_defaults(func=run_plot)
 
     args = parser.parse_args()
     args.func(args)

@@ -1,17 +1,13 @@
 import argparse as ap
 
-def run_preprocess(*_, **__):
-    from example_experiment import preprocess
-    preprocess.preprocess()
-
 
 def run_pretrain(*_, **__):
-    from example_experiment import pretrain
+    from tiny_imagenet import pretrain
     pretrain.pretrain()
 
 
 def run_finetune(*_, **__):
-    from example_experiment import finetune
+    from tiny_imagenet import finetune
     finetune.finetune()
 
 
@@ -22,8 +18,6 @@ if __name__ == '__main__':
     parser = ap.ArgumentParser()
     subparsers = parser.add_subparsers(required=True)
 
-    preprocess = subparsers.add_parser("preprocess")
-    preprocess.set_defaults(func=run_preprocess)
 
     pretrain = subparsers.add_parser("pretrain")
     pretrain.set_defaults(func=run_pretrain)

@@ -1,17 +1,17 @@
 import argparse as ap
 
 def run_preprocess(*_, **__):
-    from example_experiment import preprocess
+    from uea import preprocess
     preprocess.preprocess()
 
 
 def run_pretrain(*_, **__):
-    from example_experiment import pretrain
+    from uea import pretrain
     pretrain.pretrain()
 
 
 def run_finetune(*_, **__):
-    from example_experiment import finetune
+    from uea import finetune
     finetune.finetune()
 
 

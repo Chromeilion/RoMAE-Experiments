@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools", "setuptools-scm"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+# Change this to the name of the directory containing the python package
+include = ["uea"]
+
+[project]
+# Change this to the name of the experiment
+name = "uea"
+# Set this to a description of the experiment
+description = "Train RoMA on various UEA datasets."
+
+version = "0.0.1"
+readme = "README.md"
+requires-python = ">=3.11"
+authors = [
+    {name = "Uros Zivanovic", email = "uros.zivanovic@studenti.units.it"},
+]
+maintainers = [
+    {name = "Uros Zivanovic", email = "uros.zivanovic@studenti.units.it"},
+]
+# Add in any dependancies your experiment has here
+dependencies = ["scipy", "tqdm", "torch", "scikit-learn"]
+
+[project.urls]
+Repository = "https://github.com/Chromeilion/RoMA-Experiments"
