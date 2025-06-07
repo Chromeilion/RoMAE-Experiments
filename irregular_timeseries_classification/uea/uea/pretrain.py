@@ -5,10 +5,10 @@ import torch
 from torch.utils.data import DataLoader
 import torch.nn as nn
 import tqdm
-from roma.trainer import TrainerConfig, Trainer
-from roma.model import RoMAForPreTraining, RoMAForPreTrainingConfig, \
-    EncoderConfig, RoMAForClassification, RoMAForClassificationConfig
-from roma.utils import get_encoder_size
+from romae.trainer import TrainerConfig, Trainer
+from romae.model import RoMAEForPreTraining, RoMAEForPreTrainingConfig, \
+    EncoderConfig, RoMAEForClassification, RoMAEForClassificationConfig
+from romae.utils import get_encoder_size
 from sklearn.metrics import classification_report
 import random
 import numpy as np
@@ -159,13 +159,13 @@ def pretrain_on_ds(dataset_dir, run, dataset_savedir: Path = Path("."), mask_per
             run_name=f"{run['dataset']}_pretrain",
             warmup_steps=int((len(train_ds)*epochs)//batch_size * 0.1),
         )
-        model_config = RoMAForPreTrainingConfig(
+        model_config = RoMAEForPreTrainingConfig(
             encoder_config=encoder_config,
             n_pos_dims=1,
             n_channels=train_ds[0]["values"].shape[1],
             tubelet_size=(1, 1, 1)
         )
-        model = RoMAForPreTraining(model_config)
+        model = RoMAEForPreTraining(model_config)
         trainer = Trainer(trainer_config)
         latest_checkpoint = get_latest_checkpoint(savedir/"pretrain")
         trainer.train(
@@ -178,7 +178,7 @@ def pretrain_on_ds(dataset_dir, run, dataset_savedir: Path = Path("."), mask_per
         encoder_config.drop_path_rate = run["ft_drop_path"]
         encoder_config.hidden_drop_rate = run["ft_hidden_drop_rate"]
         encoder_config.attn_drop_rate = run["ft_attn_drop_rate"]
-        model = RoMAForClassification.from_pretrained(
+        model = RoMAEForClassification.from_pretrained(
             latest_checkpoint,
             dim_output=train_ds.inner_ds.class_names.shape[0],
             encoder_config=encoder_config
@@ -187,14 +187,14 @@ def pretrain_on_ds(dataset_dir, run, dataset_savedir: Path = Path("."), mask_per
         encoder_config.drop_path_rate = run["ft_drop_path"]
         encoder_config.hidden_drop_rate = run["ft_hidden_drop_rate"]
         encoder_config.attn_drop_rate = run["ft_attn_drop_rate"]
-        config = RoMAForClassificationConfig(
+        config = RoMAEForClassificationConfig(
             encoder_config=encoder_config,
             n_pos_dims=1,
             n_channels=train_ds[0]["values"].shape[1],
             tubelet_size=(1, 1, 1),
             dim_output=train_ds.inner_ds.class_names.shape[0]
         )
-        model = RoMAForClassification(config)
+        model = RoMAEForClassification(config)
     model.set_loss_fn(nn.CrossEntropyLoss(label_smoothing=run["ft_label_smoothing"]))
     latest_checkpoint = get_latest_checkpoint(savedir/"finetune")
     epochs = 20

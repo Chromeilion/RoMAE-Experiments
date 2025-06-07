@@ -1,7 +1,7 @@
 from torch.utils.data import Dataset
 import torch
 import torchvision.transforms.v2 as v2
-from roma.utils import gen_mask
+from romae.utils import gen_mask
 
 
 class CustomTinyImagenet(Dataset):

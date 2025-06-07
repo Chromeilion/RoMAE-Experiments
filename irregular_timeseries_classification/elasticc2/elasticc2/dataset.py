@@ -5,7 +5,7 @@ import torch
 import torch.nn as nn
 from torch.utils.data.dataset import Dataset
 import h5py
-from roma.utils import gen_mask
+from romae.utils import gen_mask
 #import joblib
 
 

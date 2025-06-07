@@ -5,8 +5,8 @@ import random
 
 import tqdm
 import numpy as np
-from roma.model import RoMAForClassification, RoMAForClassificationConfig, EncoderConfig
-from roma.trainer import Trainer, TrainerConfig
+from romae.model import RoMAEForClassification, RoMAEForClassificationConfig, EncoderConfig
+from romae.trainer import Trainer, TrainerConfig
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
@@ -50,7 +50,7 @@ def main(model_config, trainer_config, filepath = None, sample_rate=0.5, data_ra
                                 mean=MEAN,
                                 std=STD)
 
-    model = RoMAForClassification(config=model_config)
+    model = RoMAEForClassification(config=model_config)
     model.set_loss_fn(PendulumMSELoss())
     model.set_head(PendulumHead(emb_dim=model_config.encoder_config.d_model))
 
@@ -301,7 +301,7 @@ if __name__ == '__main__':
             dim_feedforward=30,
             depth=2,
         )
-        model_config = RoMAForClassificationConfig(
+        model_config = RoMAEForClassificationConfig(
             encoder_config=encoder_config,
             tubelet_size=(1, 24, 24),
             pos_encoding="ropend",

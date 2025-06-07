@@ -2,10 +2,10 @@ import random
 from functools import partial
 import os
 
-from roma.model import (RoMAForClassification, RoMAForClassificationConfig,
-                        EncoderConfig)
-from roma.trainer import Trainer, TrainerConfig
-from roma.utils import get_encoder_size
+from romae.model import (RoMAEForClassification, RoMAEForClassificationConfig,
+                         EncoderConfig)
+from romae.trainer import Trainer, TrainerConfig
+from romae.utils import get_encoder_size
 import torch
 import torch.nn as nn
 from torch.utils.data import DataLoader
@@ -22,83 +22,83 @@ def run_tests():
     small_args = get_encoder_size("RoMA-small")
     base_args = get_encoder_size("RoMA-base")
     large_args = get_encoder_size("RoMA-large")
-    model_d_tests = [
-        {
-            "ndim": 1,
-            "position_range": (1, 50),
-            "seq_len": 10,
-            "use_cls": True,
-            "d_model": tiny_args["d_model"],
-            "rope_p": 0.75,
-            "wandb_project": "Experimental-Validation-d_model=tiny"
-        },
-        {
-            "ndim": 1,
-            "position_range": (1, 50),
-            "seq_len": 10,
-            "use_cls": True,
-            "d_model": small_args["d_model"],
-            "rope_p": 0.75,
-            "wandb_project": "Experimental-Validation-d_model=small"
-        },
-        {
-            "ndim": 1,
-            "position_range": (1, 50),
-            "seq_len": 10,
-            "use_cls": True,
-            "d_model": base_args["d_model"],
-            "rope_p": 0.75,
-            "wandb_project": "Experimental-Validation-d_model=base"
-        },
-        {
-            "ndim": 1,
-            "position_range": (1, 50),
-            "seq_len": 10,
-            "use_cls": True,
-            "d_model": large_args["d_model"],
-            "rope_p": 0.75,
-            "wandb_project": "Experimental-Validation-d_model=large"
-        },
-        {
-            "ndim": 1,
-            "position_range": (1, 50),
-            "seq_len": 10,
-            "use_cls": False,
-            "d_model": tiny_args["d_model"],
-            "rope_p": 0.75,
-            "wandb_project": "Experimental-Validation-d_model=tiny"
-        },
-        {
-            "ndim": 1,
-            "position_range": (1, 50),
-            "seq_len": 10,
-            "use_cls": False,
-            "d_model": small_args["d_model"],
-            "rope_p": 0.75,
-            "wandb_project": "Experimental-Validation-d_model=small"
-        },
-        {
-            "ndim": 1,
-            "position_range": (1, 50),
-            "seq_len": 10,
-            "use_cls": False,
-            "d_model": base_args["d_model"],
-            "rope_p": 0.75,
-            "wandb_project": "Experimental-Validation-d_model=base"
-        },
-        {
-            "ndim": 1,
-            "position_range": (1, 50),
-            "seq_len": 10,
-            "use_cls": False,
-            "d_model": large_args["d_model"],
-            "rope_p": 0.75,
-            "wandb_project": "Experimental-Validation-d_model=large"
-        }
-    ]
+#    model_d_tests = [
+#        {
+#            "ndim": 1,
+#            "position_range": (1, 50),
+#            "seq_len": 10,
+#            "use_cls": True,
+#            "d_model": tiny_args["d_model"],
+#            "rope_p": 0.75,
+#            "wandb_project": "Experimental-Validation-d_model=tiny"
+#        },
+#        {
+#            "ndim": 1,
+#            "position_range": (1, 50),
+#            "seq_len": 10,
+#            "use_cls": True,
+#            "d_model": small_args["d_model"],
+#            "rope_p": 0.75,
+#            "wandb_project": "Experimental-Validation-d_model=small"
+#        },
+#        {
+#            "ndim": 1,
+#            "position_range": (1, 50),
+#            "seq_len": 10,
+#            "use_cls": True,
+#            "d_model": base_args["d_model"],
+#            "rope_p": 0.75,
+#            "wandb_project": "Experimental-Validation-d_model=base"
+#        },
+#        {
+#            "ndim": 1,
+#            "position_range": (1, 50),
+#            "seq_len": 10,
+#            "use_cls": True,
+#            "d_model": large_args["d_model"],
+#            "rope_p": 0.75,
+#            "wandb_project": "Experimental-Validation-d_model=large"
+#        },
+#        {
+#            "ndim": 1,
+#            "position_range": (1, 50),
+#            "seq_len": 10,
+#            "use_cls": False,
+#            "d_model": tiny_args["d_model"],
+#            "rope_p": 0.75,
+#            "wandb_project": "Experimental-Validation-d_model=tiny"
+#        },
+#        {
+#            "ndim": 1,
+#            "position_range": (1, 50),
+#            "seq_len": 10,
+#            "use_cls": False,
+#            "d_model": small_args["d_model"],
+#            "rope_p": 0.75,
+#            "wandb_project": "Experimental-Validation-d_model=small"
+#        },
+#        {
+#            "ndim": 1,
+#            "position_range": (1, 50),
+#            "seq_len": 10,
+#            "use_cls": False,
+#            "d_model": base_args["d_model"],
+#            "rope_p": 0.75,
+#            "wandb_project": "Experimental-Validation-d_model=base"
+#        },
+#        {
+#            "ndim": 1,
+#            "position_range": (1, 50),
+#            "seq_len": 10,
+#            "use_cls": False,
+#            "d_model": large_args["d_model"],
+#            "rope_p": 0.75,
+#            "wandb_project": "Experimental-Validation-d_model=large"
+#        }
+#    ]
     errors = run_single_test(**{
             "ndim": 1,
-            "position_range": (0, 1000),
+            "position_range": (0, 100),
             "seq_len": 1,
             "use_cls": True,
             "d_model": large_args["d_model"],
@@ -106,10 +106,24 @@ def run_tests():
             "run_extra_eval": True,
             "wandb_project": "Experimental-Validation-Relative",
             "optimizer_args": {"momentum": 0.9, "weight_decay": 0.},
-            "lr": 5e-7,
+            "lr": 5e-6,
             "optimizer": "sgd",
-            "int_pos": True
+            "uniform": True
         })
+#    errors = run_single_test(**{
+#            "ndim": 1,
+#            "position_range": (0, 100),
+#            "seq_len": 1,
+#            "use_cls": True,
+#            "d_model": large_args["d_model"],
+#            "rope_p": 0.75,
+#            "run_extra_eval": True,
+#            "wandb_project": "Experimental-Validation-Relative",
+#            "optimizer_args": {"momentum": 0.9, "weight_decay": 0.},
+#            "lr": 5e-7,
+#            "optimizer": "sgd",
+#            "uniform": True
+#        })
     mean_error = list(torch.stack(errors).mean(dim=0).detach().cpu().numpy())
     std = list(torch.stack(errors).std(dim=0).detach().cpu().numpy())
     print(mean_error)
@@ -123,18 +137,22 @@ def run_single_test(ndim: int, position_range: tuple[float, float],
                     seq_len: int, use_cls: bool, d_model: int, rope_p: float = 0.75,
                     npoints: int = 20000, wandb_project: str = "Experimental Validation",
                     run_extra_eval: bool = False, epochs: int = 10, optimizer_args: dict = None,
-                    optimizer: str = "adamw", lr: float = 5e-4, int_pos: bool = False):
+                    optimizer: str = "adamw", lr: float = 5e-4, int_pos: bool = False,
+                    uniform: bool=False):
     if optimizer_args is None:
         optimizer_args = {}
     batch_size = 64
     epochs = epochs
     n_runs = 5
     starting_seed = 40
+    torch.manual_seed(starting_seed)
+    random.seed(starting_seed)
+    np.random.seed(starting_seed)
     # Let's use the tiny model:
     encoder_args = get_encoder_size("RoMA-tiny")
     encoder_args["dim_feedforward"] = 4 * encoder_args["d_model"]
     encoder_args["d_model"] = d_model
-    model_config = RoMAForClassificationConfig(
+    model_config = RoMAEForClassificationConfig(
         encoder_config=EncoderConfig(**encoder_args),
         tubelet_size=(1, 1, 1),
         n_channels=1,
@@ -148,21 +166,23 @@ def run_single_test(ndim: int, position_range: tuple[float, float],
         position_range=position_range,
         seq_len=seq_len,
         ndim=ndim,
-        int_pos=int_pos
+        int_pos=int_pos,
+        uniform=uniform
     )
     test_dataset = PositionalDataset(
         n_samples=int(0.2 * npoints),
         position_range=position_range,
         seq_len=seq_len,
         ndim=ndim,
-        int_pos=int_pos
+        int_pos=int_pos,
+        uniform=uniform
     )
     errors = []
     for i in range(n_runs):
         torch.manual_seed(starting_seed + i)
         random.seed(starting_seed + i)
         np.random.seed(starting_seed + i)
-        model = RoMAForClassification(model_config)
+        model = RoMAEForClassification(model_config)
         model.set_loss_fn(nn.MSELoss())
         model.set_head(PositionReconstructionHead(
             d_model=model_config.encoder_config.d_model,
@@ -193,7 +213,7 @@ def run_single_test(ndim: int, position_range: tuple[float, float],
         )
         if run_extra_eval:
             n_test_points = 500
-            test_positions = torch.arange(position_range[0]+.5, position_range[1]-.5, (position_range[1]-position_range[0])/n_test_points, device="cuda")[None, None, ...]
+            test_positions = torch.linspace(position_range[0], position_range[1], n_test_points, device="cuda")[None, None, ...]
             test_vals = torch.ones((1, n_test_points, 1, 1, 1), device="cuda")
             error_p = []
             for i in range(n_test_points):
@@ -208,7 +228,7 @@ def run_single_test(ndim: int, position_range: tuple[float, float],
 
 
 
-def end_eval_callback(model: RoMAForClassification, run, device, eval_dataset):
+def end_eval_callback(model: RoMAEForClassification, run, device, eval_dataset):
     model.eval()
     full_loss = 0
     dataloader = DataLoader(eval_dataset, batch_size=1,

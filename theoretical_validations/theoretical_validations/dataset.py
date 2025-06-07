@@ -9,7 +9,9 @@ class PositionalDataset(Dataset):
     """
     def __init__(self, n_samples: int = 1000, ndim: int = 1,
                  position_range: tuple[float, float] = (0, 1000),
-                 seq_len: int = 10, int_pos: bool = False):
+                 seq_len: int = 10, int_pos: bool = False, uniform: bool=False):
+        if uniform:
+            self.labels = torch.linspace(position_range[0], position_range[1], seq_len).unsqueeze(0).repeat(n_samples, ndim, 1)
         if int_pos:
             self.labels = torch.round(torch.zeros((n_samples, ndim, seq_len)).uniform_(
                 *position_range))

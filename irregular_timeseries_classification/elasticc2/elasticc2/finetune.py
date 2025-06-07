@@ -1,5 +1,5 @@
-from roma.model import RoMAForClassification, RoMAForClassificationConfig
-from roma.trainer import Trainer, TrainerConfig
+from romae.model import RoMAEForClassification, RoMAEForClassificationConfig
+from romae.trainer import Trainer, TrainerConfig
 import torch
 
 from elasticc2.dataset import Elasticc2Dataset
@@ -14,7 +14,7 @@ def finetune():
     n_folds = 1
     for fold in range(n_folds):
         print(f"Training on fold {fold}")
-        model = RoMAForClassification.from_pretrained(
+        model = RoMAEForClassification.from_pretrained(
             config.pretrained_model,
             dim_output=config.n_classes
         )

@@ -11,7 +11,7 @@ import torch
 from torch.utils.data import Dataset
 import pandas as pd
 from sklearn.model_selection import train_test_split
-from roma.utils import gen_mask
+from romae.utils import gen_mask
 from .load_from_tsfile_to_dataframe import load_from_tsfile_to_dataframe
 from .base import BaseDataset
 import numpy as np

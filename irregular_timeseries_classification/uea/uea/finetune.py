@@ -1,7 +1,7 @@
-from roma.model import (RoMAForClassification, RoMAForClassificationConfig,
-                        EncoderConfig)
-from roma.trainer import Trainer, TrainerConfig
-from roma.utils import get_encoder_size
+from romae.model import (RoMAEForClassification, RoMAEForClassificationConfig,
+                         EncoderConfig)
+from romae.trainer import Trainer, TrainerConfig
+from romae.utils import get_encoder_size
 import torch.nn as nn
 
 from lsst.dataset import LSSTDataset
@@ -12,14 +12,14 @@ def finetune():
     config = LSSTConfig()
     encoder_args = get_encoder_size(config.encoder_size)
     
-    model_config = RoMAForClassificationConfig(
+    model_config = RoMAEForClassificationConfig(
         encoder_config=EncoderConfig(**encoder_args),
         tubelet_size=(1, 1, 1),
         dim_output=1,
         n_channels=1,
         n_pos_dims=1
     )
-    model = RoMAForClassification.from_pretrained(config.pretrained_checkpoint)
+    model = RoMAEForClassification.from_pretrained(config.pretrained_checkpoint)
     model.set_loss_fn(nn.MSELoss())
     trainer_config = TrainerConfig(
         warmup_steps=1000,
