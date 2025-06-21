@@ -1,6 +1,6 @@
-from roma.utils import get_encoder_size
-from roma.model import RoMAForPreTraining, RoMAForPreTrainingConfig, EncoderConfig
-from roma.trainer import Trainer, TrainerConfig
+from romae.utils import get_encoder_size
+from romae.model import RoMAEForPreTraining, RoMAEForPreTrainingConfig, EncoderConfig
+from romae.trainer import Trainer, TrainerConfig
 
 from elasticc2.dataset import Elasticc2Dataset
 from elasticc2.config import ElasticcConfig
@@ -13,7 +13,7 @@ def pretrain():
     config = ElasticcConfig()
     encoder_args = get_encoder_size(config.model_size)
 
-    model_config = RoMAForPreTrainingConfig(
+    model_config = RoMAEForPreTrainingConfig(
         encoder_config=EncoderConfig(**encoder_args),
         tubelet_size=(1, 1, 1),
         n_channels=2,
@@ -23,7 +23,7 @@ def pretrain():
     n_folds = 1
     for fold in range(n_folds):
         print(f"Training on fold {fold}")
-        model = RoMAForPreTraining(model_config)
+        model = RoMAEForPreTraining(model_config)
         trainer_config = TrainerConfig(
             warmup_steps=config.pretrain_warmup_steps,
             checkpoint_dir="checkpoints-pretrain-fold-"+str(fold),
