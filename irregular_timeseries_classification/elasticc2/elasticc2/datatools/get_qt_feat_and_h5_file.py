@@ -86,6 +86,10 @@ def joint_classes(target_dir):
     list_dfs = []
     for fine_class in os.listdir(target_dir):
         df = pd.read_pickle(os.path.join(target_dir, fine_class))
+        df["time"] = df["time"].apply(lambda x: x.astype(np.float32))
+        df["data"] = df["data"].apply(lambda x: x.astype(np.float32))
+        df["mask"] = df["mask"].apply(lambda x: x > 0.5)
+        df["photflag"] = df["photflag"].apply(lambda x: x.astype(np.uint32))
         list_dfs.append(df)
         print('-', fine_class, len(df))
         index += 1
