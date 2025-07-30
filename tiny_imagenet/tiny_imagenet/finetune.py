@@ -41,9 +41,9 @@ def finetune():
     model.set_loss_fn(nn.CrossEntropyLoss(label_smoothing=0.1))
     trainer_config = TrainerConfig(
         epochs=15,
-        optimizer="sgd",
-#        optimizer_args={"weight_decay": 0.05, "betas": (0.9, 0.999)},
-        optimizer_args={"weight_decay": 0., "momentum": 0.9},
+#        optimizer="sgd",
+        optimizer_args={"weight_decay": 0.05, "betas": (0.9, 0.999)},
+#        optimizer_args={"weight_decay": 0., "momentum": 0.9},
         project_name="TI Experiment",
         random_seed=config.seed,
         warmup_steps=500

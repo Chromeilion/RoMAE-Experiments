@@ -26,9 +26,9 @@ def pretrain():
     val_ds = [val_ds[i] for i in range(len(val_ds))]
     train_ds = CustomTinyImagenet(inner_ds=train_ds)
     val_ds = CustomTinyImagenet(inner_ds=val_ds)
-    encoder_args = get_encoder_size("RoMA-small")
+    encoder_args = get_encoder_size("RoMAE-small")
     encoder_config = EncoderConfig(**encoder_args)
-    decoder_config = get_encoder_size("RoMA-small")
+    decoder_config = get_encoder_size("RoMAE-small")
     decoder_config["depth"] = 2
     model_config = RoMAEForPreTrainingConfig(
         encoder_config=encoder_config,

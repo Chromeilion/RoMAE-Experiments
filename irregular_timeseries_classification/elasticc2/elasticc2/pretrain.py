@@ -17,7 +17,8 @@ def pretrain():
         encoder_config=EncoderConfig(**encoder_args),
         tubelet_size=(1, 1, 1),
         n_channels=2,
-        n_pos_dims=2
+        n_pos_dims=2,
+        use_cls=False
     )
     print("Training only on first fold")
     n_folds = 1
