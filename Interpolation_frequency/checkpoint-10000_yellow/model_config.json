@@ -1,0 +1,42 @@
+{
+    "encoder_config": {
+        "d_model": 180,
+        "nhead": 3,
+        "layer_norm_eps": 1e-12,
+        "depth": 12,
+        "dim_feedforward": null,
+        "mlp_ratio": 4.0,
+        "drop_path_rate": 0.0,
+        "hidden_drop_rate": 0.0,
+        "attn_proj_drop_rate": 0.0,
+        "attn_drop_rate": 0.0,
+        "pos_drop_rate": 0.0
+    },
+    "use_cls": true,
+    "pos_encoding": "ropend",
+    "max_len": 1500,
+    "tubelet_size": [
+        1,
+        1,
+        1
+    ],
+    "n_channels": 1,
+    "head_drop_rate": 0.0,
+    "n_pos_dims": 1,
+    "p_rope_val": 0.75,
+    "decoder_config": {
+        "d_model": 180,
+        "nhead": 3,
+        "layer_norm_eps": 1e-12,
+        "depth": 12,
+        "dim_feedforward": null,
+        "mlp_ratio": 4.0,
+        "drop_path_rate": 0.0,
+        "hidden_drop_rate": 0.0,
+        "attn_proj_drop_rate": 0.0,
+        "attn_drop_rate": 0.0,
+        "pos_drop_rate": 0.0
+    },
+    "mask_ratio": 0.5,
+    "normalize_targets": false
+}

@@ -1,0 +1,84 @@
+_wandb:
+    value:
+        cli_version: 0.19.8
+        m: []
+        python_version: 3.11.11
+        t:
+            "1":
+                - 1
+                - 49
+                - 55
+                - 71
+            "2":
+                - 1
+                - 49
+                - 55
+                - 71
+            "3":
+                - 13
+                - 16
+                - 23
+                - 55
+            "4": 3.11.11
+            "5": 0.19.8
+            "8":
+                - 5
+            "12": 0.19.8
+            "13": linux-x86_64
+model:
+    value:
+        decoder_config:
+            attn_drop_rate: 0
+            attn_proj_drop_rate: 0
+            d_model: 180
+            depth: 12
+            dim_feedforward: null
+            drop_path_rate: 0
+            hidden_drop_rate: 0
+            layer_norm_eps: 1e-12
+            mlp_ratio: 4
+            nhead: 3
+            pos_drop_rate: 0
+        encoder_config:
+            attn_drop_rate: 0
+            attn_proj_drop_rate: 0
+            d_model: 180
+            depth: 12
+            dim_feedforward: null
+            drop_path_rate: 0
+            hidden_drop_rate: 0
+            layer_norm_eps: 1e-12
+            mlp_ratio: 4
+            nhead: 3
+            pos_drop_rate: 0
+        head_drop_rate: 0
+        max_len: 1500
+        n_channels: 1
+        n_pos_dims: 1
+        normalize_targets: false
+        p_rope_val: 0.75
+        pos_encoding: ropend
+        tubelet_size:
+            - 1
+            - 1
+            - 1
+        use_cls: true
+trainer:
+    value:
+        base_lr: 0.001
+        batch_size: 8
+        checkpoint_dir: ./checkpoints
+        entity_name: null
+        epochs: 50
+        eval_every: 50
+        gradient_clip: 1
+        lr_scaling: false
+        lr_schedule: cosine
+        max_checkpoints: 4
+        num_dataset_workers: 111
+        optimizer: adamw
+        project_name: Interpolation_frequency
+        random_seed: 42
+        run_name: 2025-10-15-17-25-55
+        save_every: 10
+        warmup_steps: 200

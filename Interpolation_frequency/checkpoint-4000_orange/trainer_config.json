@@ -1,0 +1,20 @@
+{
+    "base_lr": 0.0001,
+    "epochs": 50,
+    "eval_every": 50,
+    "save_every": 10,
+    "batch_size": 16,
+    "optimizer": "adamw",
+    "checkpoint_dir": "./checkpoints",
+    "num_dataset_workers": 111,
+    "run_name": "2025-04-15-12-12-59",
+    "project_name": "Interpolation_synthetic",
+    "entity_name": "rmae",
+    "optimizer_args": {},
+    "warmup_steps": 200,
+    "lr_schedule": "cosine",
+    "max_checkpoints": 4,
+    "gradient_clip": 1.0,
+    "random_seed": 42,
+    "lr_scaling": false
+}
