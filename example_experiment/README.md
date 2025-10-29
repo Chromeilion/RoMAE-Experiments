@@ -1,6 +1,6 @@
 # Example Experiment
 
-This is an example experiment utilizing RoMA. 
+This is an example experiment utilizing RoMAE. 
 To adapt this to your needs, you can copy and paste this directory and change 
 the following:
 
@@ -15,7 +15,7 @@ If you want to run finetuning for example, you can run:
 python -m example_experiment finetune
 ```
 
-With the Leonardo script, you should set EXPERIMENT_PACKAGE to example in the 
+With the Leonardo script, you should set ```EXPERIMENT_PACKAGE``` to ```example``` in the 
 .env file, and then if you wanna run finetuning you can do:
 
 ```bash
