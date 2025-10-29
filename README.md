@@ -1,14 +1,15 @@
-# RoMA-Experiments
-Repository containing experiments for the Rotary Masked Autoencoder.
+# RoMAE-Experiments
+Repository containing experiments for the paper ["Rotary Masked Autoencoders are Versatile Learners"](https://arxiv.org/abs/2505.20535).
 
 ## Creating an Experiment
 
-To see how to make an experiment, check out the example directory. 
+To see how to make an experiment, check out the ```example_experiment``` directory. 
 In essence, each experiment is a regular Python package.
 The only hardline requirement is that the package needs to be executable, e.g. 
 it should have a ```__main__.py``` file which runs the experiment.
 With this, it is then possible to utilize the training utilities present in 
-RoMA to do multi-node and multi-GPU training.
+the [RoMAE](https://github.com/Chromeilion/RoMAE) package to do multi-node and 
+multi-GPU training.
 
 ## Running an Experiment
 
@@ -24,30 +25,30 @@ python -m venv .venv
 source .venv/bin/activate
 ```
 
-Next install RoMA. To install it directly form the repo:
+Next install RoMAE. To install it directly from the repo:
 
 ```bash
-pip install roma@git+https://github.com/Chromeilion/RoMA@main#egg=roma
+pip install romae@git+https://github.com/Chromeilion/RoMAE@main#egg=romae
 ```
 
 Alternatively, if you dont have access to the repo, you can also just  
-install RoMA from a local directory. To make it easier to update it I recommend 
+install RoMAE from a local directory. To make it easier to update it I recommend 
 using editable mode:
 
 ```bash
-cd path/to/RoMA
+cd path/to/RoMAE
 pip install -e .
 ```
 
 Finally, install the experiment as well.
 To do this, cd into the directory containing the Python package corresponding 
-to that experiment and install it in editable mode:
+to that experiment and install it:
 
 ```bash
-pip install -e .
+pip install .
 ```
 Now everything should be set up. 
-To run the experiment locally you can simply execute the package.
+To run the experiment locally you can execute the package.
 E.g. for an experiment called "example-experiment":
 
 ```bash
@@ -57,7 +58,7 @@ python -m example-experiment
 The CLI might be different for each experiment. Refer to the experiment-specific 
 documentation for this.
 
-### Running on Leonardo
+### Running on the Leonardo Supercomputer
 
 When running on Leonardo, before doing the steps above on the login node,
 make sure to load the correct modules:
@@ -69,8 +70,8 @@ module load python/3.11.6--gcc--8.5.0
 
 Then you can follow the steps above to get your Python virtual environment set up. 
 
-To  submit a job you can utilize the [script](https://github.com/Chromeilion/RoMA/blob/main/scripts/run_experiment.sh) 
-provided in the RoMA repo. Before running it, you must create 
+To  submit a job you can utilize the [script](https://github.com/Chromeilion/RoMAE/blob/main/scripts/run_experiment.sh) 
+provided in the RoMAE repo. Before running it, you must create 
 a ```.env``` file with all the required variables in the directory you 
 are running from. A list of these variables can be found at the top of 
 the script. You also have to create a logs directory. Finally, you can run:
@@ -92,5 +93,4 @@ adding them to the end of the command like so:
 ```bash
 sbatch run_experiment.sh arg1 arg2 ... argN
 ```
-
-
+The process is similar on other Slurm based compute clusters.
