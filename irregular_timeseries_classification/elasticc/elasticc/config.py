@@ -9,7 +9,7 @@ torch.backends.cuda.matmul.allow_tf32 = True
 
 class ElasticcConfig(BaseSettings):
     model_config = SettingsConfigDict(
-        env_prefix='ELASTICC2_',
+        env_prefix='ELASTICC_',
         env_file='.env',
         extra="ignore"
     )
@@ -45,7 +45,7 @@ class ElasticcConfig(BaseSettings):
     class_names: list[str] = Field([ 'AGN', 'CART', 'Cepheid', 'Delta Scuti', 'Dwarf Novae', 'EB', 'ILOT',
                               'KN', 'M-dwarf Flare', 'PISN', 'RR Lyrae', 'SLSN', '91bg', 'Ia', 'Iax', 'Ib/c',
                               'II', 'SN-like/Other', 'TDE', 'uLens'])
-    project_name: str = Field("Elasticc2")
+    project_name: str = Field("ELAsTiCC")
     finetune_optimargs: dict[str, Any] = {"betas": (0.9, 0.999),
                                           "weight_decay": 0.05}
     pretrain_optimargs: dict[str, Any] = {"betas": (0.9, 0.95),

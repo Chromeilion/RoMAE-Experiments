@@ -1,11 +1,11 @@
-# ELAsTiCC 2 Hierarchical Classification
+# ELAsTiCC Classification Experiment
 
 Competing with [this](https://arxiv.org/abs/2405.03078) paper. A bunch of data 
 processing code is taken from [this](https://github.com/alercebroker/ATAT) 
 repo. ELasTICC was originally announced [here](https://baas.aas.org/pub/2023n2i358p04/release/1).
 and [here](https://baas.aas.org/pub/2023n2i117p01/release/1).
 
-## Running
+## Getting Set Up
 
 First install the package:
 
@@ -13,4 +13,54 @@ First install the package:
 pip install .
 ```
 
-To download and prepare the data first run the preprocess command:
+To download and prepare the data run the preprocess command:
+
+```bash
+python -m elasticc preprocess
+```
+
+The preprocess function is based on code from [ATAT](https://arxiv.org/abs/2405.03078) 
+and can take a while to run. It will create a file called elasticc_final.h5, which is
+the file we will use later. If you already have this file from running the 
+actual ATAT code, you can skip this step.
+
+### Configuration
+
+In the same fashion as the base RoMAE package, we use a Pydantic 
+[BaseSettings](https://docs.pydantic.dev/latest/concepts/pydantic_settings/)
+object to store our experiment configuration. This makes it easy to pass 
+variables through the environment or a  ```.env``` file.
+The environment prefix for this experiment is ```ELASTICC```.
+To see all possible variables, take a look at the ```ElasticcConfig``` class 
+located in ```elasticc/config.py```. As an example, to set the dataset 
+location you can set the ```ELASTICC_DATASET_LOCATION``` environment variable.
+
+## Model Pre-Training/Fine-Tuning
+
+To run pre-training, run the following command:
+
+```bash
+python -m elasticc pretrain
+```
+
+This will train a RoMAE model from scratch through masked modeling.
+Some environment variables such as ```ELASTICC_DATASET_LOCATION``` (which 
+points to the ```elasticc_final.h5``` file) must be set for this to work. 
+Some training hyperparameters are set through the experiment configuration, 
+while others can be set in the way described in the 
+[RoMAE](https://github.com/Chromeilion/RoMAE) package README. Afterwards, 
+you can use the checkpoints generated during pre-training to run the 
+fine-tuning stage:
+
+```bash
+python -m elasticc finetune
+```
+
+For this make sure to set the ```ELASTICC_PRETRAINED_MODEL``` variable to the 
+pre-trained checkpoint folder you wish to use.
+Finally, to run evaluation, set the ```ELASTICC_EVAL_CHECKPOINT``` variable 
+and run the following command:
+
+```bash
+python -m elasticc evaluate
+```

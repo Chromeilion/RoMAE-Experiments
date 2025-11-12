@@ -11,7 +11,6 @@ from sklearn.metrics import classification_report
 
 
 def evaluate():
-    # Let's use the tiny model:
     config = ElasticcConfig()
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     print("Evaluating on test set")
