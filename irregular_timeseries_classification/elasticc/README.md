@@ -64,3 +64,12 @@ and run the following command:
 ```bash
 python -m elasticc evaluate
 ```
+
+## Training on Clusters
+
+For our experiments we ran the training on a compute cluster over 16 GPUs.
+You can see how this can be done in the Slurm scripts located in the 
+RoMAE repository [here](https://github.com/Chromeilion/RoMAE/blob/main/scripts/run_experiment.sh).
+The need for distributed training comes primarily from the large size of the 
+dataset and not the size of the model itself; therefore, training would also 
+work with less resources, although it will take longer.
