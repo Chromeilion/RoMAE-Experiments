@@ -1,25 +1,25 @@
 import argparse as ap
 
 def run_preprocess(*_, **__):
-    from elasticc2 import preprocess
+    from elasticc import preprocess
     preprocess.preprocess()
 
 def run_plot(*_, **__):
-    from elasticc2 import plot
+    from elasticc import plot
     plot.plot()
 
 def run_evaluate(*_, **__):
-    from elasticc2 import evaluate
+    from elasticc import evaluate
     evaluate.evaluate()
 
 
 def run_pretrain(*_, **__):
-    from elasticc2 import pretrain
+    from elasticc import pretrain
     pretrain.pretrain()
 
 
 def run_finetune(*_, **__):
-    from elasticc2 import finetune
+    from elasticc import finetune
     finetune.finetune()
 
 

@@ -5,8 +5,8 @@ from romae.model import RoMAEForClassification, RoMAEForClassificationConfig
 from romae.utils import load_from_checkpoint
 from torch.utils.data import DataLoader
 from tqdm import tqdm
-from elasticc2.dataset import Elasticc2Dataset
-from elasticc2.config import ElasticcConfig
+from elasticc.dataset import Elasticc2Dataset
+from elasticc.config import ElasticcConfig
 from sklearn.metrics import classification_report
 
 

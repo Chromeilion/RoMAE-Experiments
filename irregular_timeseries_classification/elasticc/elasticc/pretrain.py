@@ -2,8 +2,8 @@ from romae.utils import get_encoder_size
 from romae.model import RoMAEForPreTraining, RoMAEForPreTrainingConfig, EncoderConfig
 from romae.trainer import Trainer, TrainerConfig
 
-from elasticc2.dataset import Elasticc2Dataset
-from elasticc2.config import ElasticcConfig
+from elasticc.dataset import Elasticc2Dataset
+from elasticc.config import ElasticcConfig
 
 
 def pretrain():

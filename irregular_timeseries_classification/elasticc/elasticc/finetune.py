@@ -2,8 +2,8 @@ from romae.model import RoMAEForClassification, RoMAEForClassificationConfig
 from romae.trainer import Trainer, TrainerConfig
 import torch
 
-from elasticc2.dataset import Elasticc2Dataset
-from elasticc2.config import ElasticcConfig
+from elasticc.dataset import Elasticc2Dataset
+from elasticc.config import ElasticcConfig
 
 
 def finetune():
