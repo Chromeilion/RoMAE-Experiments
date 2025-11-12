@@ -34,8 +34,7 @@ def finetune():
             optimizer_args=config.finetune_optimargs,
             batch_size=config.finetune_batch_size,
             project_name=config.project_name,
-            gradient_clip=config.finetune_grad_clip,
-            lr_scaling=True
+            gradient_clip=config.finetune_grad_clip
         )
         trainer = Trainer(trainer_config)
         with (

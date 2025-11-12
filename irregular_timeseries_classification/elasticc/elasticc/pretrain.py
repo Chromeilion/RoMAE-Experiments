@@ -34,8 +34,7 @@ def pretrain():
             optimizer_args=config.pretrain_optimargs,
             batch_size=config.pretrain_batch_size,
             project_name=config.project_name,
-            gradient_clip=config.pretrain_grad_clip,
-            lr_scaling=True
+            gradient_clip=config.pretrain_grad_clip
         )
         trainer = Trainer(trainer_config)
         with (
