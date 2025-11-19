@@ -5,7 +5,7 @@ from romae.model import RoMAEForClassification, RoMAEForClassificationConfig
 from romae.utils import load_from_checkpoint
 from torch.utils.data import DataLoader
 from tqdm import tqdm
-from elasticc.dataset import Elasticc2Dataset
+from elasticc.dataset import ElasticcDataset
 from elasticc.config import ElasticcConfig
 from sklearn.metrics import classification_report
 
@@ -19,8 +19,8 @@ def evaluate():
     all_preds = []
     all_labels = []
     with (
-        Elasticc2Dataset(config.dataset_location, split_no=0,
-                         split_type="test") as test_dataset,
+        ElasticcDataset(config.dataset_location, split_no=0,
+                        split_type="test") as test_dataset,
     ):
         dataloader = DataLoader(
             test_dataset,

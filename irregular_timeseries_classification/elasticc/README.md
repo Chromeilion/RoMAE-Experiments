@@ -5,6 +5,17 @@ processing code is taken from [this](https://github.com/alercebroker/ATAT)
 repo. ELasTICC was originally announced [here](https://baas.aas.org/pub/2023n2i358p04/release/1).
 and [here](https://baas.aas.org/pub/2023n2i117p01/release/1).
 
+## Checkpoints
+
+| Model Size         | Checkpoint                                                                                                     |
+|--------------------|----------------------------------------------------------------------------------------------------------------|
+| tiny-shallow | [elasticc-romae-tiny-shallow.tar.gz](https://pl.cro.moe/romae_checkpoints/elasticc-romae-tiny-shallow.tar.gz)  |
+| tiny         | [elasticc-romae-tiny.tar.gz](https://pl.cro.moe/romae_checkpoints/elasticc-romae-tiny.tar.gz)                  |
+
+Because of the expenses involved with training RoMAE on the ELAsTiCC dataset,
+we also provide the fine-tuned model checkpoints. These can be used for 
+classification and model evaluation through the ```evaluate``` command.
+
 ## Getting Set Up
 
 First install the package:

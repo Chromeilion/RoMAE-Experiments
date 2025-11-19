@@ -1,7 +1,7 @@
 import torch
 import matplotlib.pyplot as plt
 
-from elasticc.dataset import Elasticc2Dataset
+from elasticc.dataset import ElasticcDataset
 from elasticc.config import ElasticcConfig
 
 
@@ -11,7 +11,7 @@ def plot():
     plt.rc('text.latex')
     plt.rcParams["font.family"] = "Times New Roman"
     config = ElasticcConfig()
-    with Elasticc2Dataset(
+    with ElasticcDataset(
             config.dataset_location, split_no=0,
             split_type="training",
             gaussian_noise=config.gaussian_noise) as ds:

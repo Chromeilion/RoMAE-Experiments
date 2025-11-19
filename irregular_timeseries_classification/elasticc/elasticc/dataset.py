@@ -6,10 +6,9 @@ import torch.nn as nn
 from torch.utils.data.dataset import Dataset
 import h5py
 from romae.utils import gen_mask
-#import joblib
 
 
-class Elasticc2Dataset(Dataset):
+class ElasticcDataset(Dataset):
     # Step size when picking samples from the validation sets
     VAL_RATIO = 64
     FLUX_MEANS = [12.8765,  9.9520, 16.1126, 21.4952, 25.1622, 29.2021]

@@ -2,7 +2,7 @@ from romae.model import RoMAEForClassification, RoMAEForClassificationConfig
 from romae.trainer import Trainer, TrainerConfig
 import torch
 
-from elasticc.dataset import Elasticc2Dataset
+from elasticc.dataset import ElasticcDataset
 from elasticc.config import ElasticcConfig
 
 
@@ -38,11 +38,11 @@ def finetune():
         )
         trainer = Trainer(trainer_config)
         with (
-            Elasticc2Dataset(config.dataset_location, split_no=fold,
-                             split_type="validation") as test_dataset,
-            Elasticc2Dataset(config.dataset_location, split_no=fold,
-                             split_type="training",
-                             gaussian_noise=config.gaussian_noise) as train_dataset
+            ElasticcDataset(config.dataset_location, split_no=fold,
+                            split_type="validation") as test_dataset,
+            ElasticcDataset(config.dataset_location, split_no=fold,
+                            split_type="training",
+                            gaussian_noise=config.gaussian_noise) as train_dataset
         ):
             trainer.train(
                 train_dataset=train_dataset,
