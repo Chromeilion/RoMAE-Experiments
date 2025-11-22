@@ -39,10 +39,14 @@ def pretrain():
         trainer = Trainer(trainer_config)
         with (
             ElasticcDataset(config.dataset_location, split_no=fold,
-                            split_type="validation") as test_dataset,
+                            split_type="validation",
+                            apply_alert_mask=config.apply_alert_mask,
+                            mask_ratio=config.pretrain_mask_ratio) as test_dataset,
             ElasticcDataset(config.dataset_location, split_no=fold,
                             split_type="training",
-                            gaussian_noise=config.gaussian_noise) as train_dataset
+                            gaussian_noise=config.gaussian_noise,
+                            apply_alert_mask=config.apply_alert_mask,
+                            mask_ratio=config.pretrain_mask_ratio) as train_dataset
         ):
             trainer.train(
                 train_dataset=train_dataset,

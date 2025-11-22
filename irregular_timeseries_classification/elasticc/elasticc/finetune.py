@@ -1,4 +1,4 @@
-from romae.model import RoMAEForClassification, RoMAEForClassificationConfig
+from romae.model import RoMAEForClassification
 from romae.trainer import Trainer, TrainerConfig
 import torch
 
@@ -25,7 +25,7 @@ def finetune():
             )
         )
         trainer_config = TrainerConfig(
-            warmup_steps=config.pretrain_warmup_steps,
+            warmup_steps=config.finetune_warmup_steps,
             checkpoint_dir="checkpoints-finetune-fold-"+str(fold),
             epochs=config.finetune_epochs,
             base_lr=config.finetune_lr,
@@ -39,10 +39,12 @@ def finetune():
         trainer = Trainer(trainer_config)
         with (
             ElasticcDataset(config.dataset_location, split_no=fold,
-                            split_type="validation") as test_dataset,
+                            split_type="validation",
+                            apply_alert_mask=config.apply_alert_mask) as test_dataset,
             ElasticcDataset(config.dataset_location, split_no=fold,
                             split_type="training",
-                            gaussian_noise=config.gaussian_noise) as train_dataset
+                            gaussian_noise=config.gaussian_noise,
+                            apply_alert_mask=config.apply_alert_mask) as train_dataset
         ):
             trainer.train(
                 train_dataset=train_dataset,

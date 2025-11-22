@@ -25,7 +25,7 @@ class ElasticcConfig(BaseSettings):
     pretrain_batch_size: int = Field(512)
     pretrain_eval_every: int = Field(1000)
     pretrain_save_every: int = Field(1000)
-    pretrain_mask_ratio: float = Field(0.75)
+    pretrain_mask_ratio: float = Field(0.5)
     pretrain_grad_clip: float = Field(10)
     finetune_epochs: int = Field(25)
     finetune_lr: float = Field(8e-4)
@@ -50,3 +50,4 @@ class ElasticcConfig(BaseSettings):
                                           "weight_decay": 0.05}
     pretrain_optimargs: dict[str, Any] = {"betas": (0.9, 0.95),
                                           "weight_decay": 0.05}
+    apply_alert_mask: bool = Field(False)

@@ -1,6 +1,3 @@
-"""
-A simple example dataset.
-"""
 import torch
 import torch.nn as nn
 from torch.utils.data.dataset import Dataset
@@ -15,13 +12,15 @@ class ElasticcDataset(Dataset):
     FLUX_STDS = [71.4588,  97.3610, 129.6534, 147.7320, 167.2712, 197.8658]
 
     def __init__(self, database_file, split_no: int, split_type: str,
-                 mask_ratio: float = 0.5, gaussian_noise: bool = False):
+                 mask_ratio: float = 0.5, gaussian_noise: bool = False,
+                 apply_alert_mask: bool = False):
         self.file = h5py.File(database_file, 'r')
         self.noise = gaussian_noise
         self.idxs = self._get_idxs(split_no, split_type)
         self.mask_ratio = mask_ratio
         self.flux_stds = torch.tensor(self.FLUX_STDS)
         self.flux_means = torch.tensor(self.FLUX_MEANS)
+        self.apply_alert_mask = apply_alert_mask
 
     def get_standardization_vals(self):
         import tqdm
@@ -60,8 +59,10 @@ class ElasticcDataset(Dataset):
         data = torch.tensor(self.file["data"][idx]).flatten()
         pad_mask = (torch.tensor(self.file["mask"][idx]) > 0.5).flatten()
         # If there is an alert for a sample we ignore it
-        alert_mask = (torch.tensor(self.file["mask_alert"][idx]) > 0.5).flatten()
-        pad_mask[alert_mask] = True
+        if self.apply_alert_mask:
+            alert_mask = (torch.tensor(self.file["mask_alert"][idx]) > 0.5).flatten()
+            pad_mask = torch.logical_and(pad_mask, alert_mask)
+
         times = torch.tensor(self.file["time"][idx].flatten())
         label = torch.tensor(self.file["labels"][idx])
         bands = torch.arange(0, 6).repeat(data.shape[0]//6)

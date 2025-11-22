@@ -20,7 +20,8 @@ def evaluate():
     all_labels = []
     with (
         ElasticcDataset(config.dataset_location, split_no=0,
-                        split_type="test") as test_dataset,
+                        split_type="test",
+                        apply_alert_mask=config.apply_alert_mask) as test_dataset,
     ):
         dataloader = DataLoader(
             test_dataset,

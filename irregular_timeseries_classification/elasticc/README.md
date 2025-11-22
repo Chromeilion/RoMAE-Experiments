@@ -7,14 +7,21 @@ and [here](https://baas.aas.org/pub/2023n2i117p01/release/1).
 
 ## Checkpoints
 
-| Model Size         | Checkpoint                                                                                                     |
-|--------------------|----------------------------------------------------------------------------------------------------------------|
-| tiny-shallow | [elasticc-romae-tiny-shallow.tar.gz](https://pl.cro.moe/romae_checkpoints/elasticc-romae-tiny-shallow.tar.gz)  |
-| tiny         | [elasticc-romae-tiny.tar.gz](https://pl.cro.moe/romae_checkpoints/elasticc-romae-tiny.tar.gz)                  |
+| Model Size   | Includes <br/> Flagged Data | F-score | Checkpoint                                                                                                    |
+|--------------|-----------------------------|---------|---------------------------------------------------------------------------------------------------------------|
+| tiny-shallow | <center>✅<center/>          | 0.7106  | [elasticc-romae-tiny-shallow.tar.gz](https://pl.cro.moe/romae_checkpoints/elasticc-romae-tiny-shallow.tar.gz) |
+| tiny         | <center>✅<center/>          | 0.8029  | [elasticc-romae-tiny.tar.gz](https://pl.cro.moe/romae_checkpoints/elasticc-romae-tiny.tar.gz)                 |
+| tiny         | <center>❌<center/>          | 0.7205  | [elasticc-romae-tiny-noalert.tar.gz](https://pl.cro.moe/romae_checkpoints/elasticc-romae-tiny-noalert.tar.gz) |
 
 Because of the expenses involved with training RoMAE on the ELAsTiCC dataset,
-we also provide the fine-tuned model checkpoints. These can be used for 
+we provide the fine-tuned model checkpoints. These can be used for 
 classification and model evaluation through the ```evaluate``` command.
+To provide a closer comparison to ATAT, we also train a version of RoMAE that 
+excludes points whose flux is saturated or flagged as likely to be inaccurate 
+and provide the checkpoint here. To enable loading the data without flagged 
+points, set the ```ELASTICC_APPLY_ALERT_MASK``` environment variable to 
+```True```. The same hyperparameters have been used across all runs as 
+described in the paper.
 
 ## Getting Set Up
 
