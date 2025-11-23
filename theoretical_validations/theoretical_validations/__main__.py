@@ -10,9 +10,6 @@ def run_plot(*_, **__):
     plot()
 
 if __name__ == '__main__':
-    """Very simple command line interface that takes in some command and runs 
-    the corresponding function.
-    """
     parser = ap.ArgumentParser()
     subparsers = parser.add_subparsers(required=True)
 
