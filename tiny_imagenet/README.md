@@ -1,23 +1,38 @@
-# Example Experiment
+# Tiny ImageNet Experiment
 
-This is an example experiment utilizing RoMA. 
-To adapt this to your needs, you can copy and paste this directory and change 
-the following:
-
-1. Rename the directories example and example/example to the name of your experiment
-2. Update the pyproject.toml file, specifically lines 7, 11, 13, and 28
-3. Update this file, adding a brief description of how to run the experiment.
-
-This package has 3 subcommands: finetune, preprocess, and pretrain.
-If you want to run finetuning for example, you can run:
+Trains RoMAE on the [Tiny ImageNet](http://vision.stanford.edu/teaching/cs231n/reports/2015/pdfs/yle_project.pdf) 
+dataset.
+To train the model, set the ```TINY_IMAGENET_DATASET_LOCATION``` env variable 
+to the location of the dataset.
+Make sure to install the package:
 
 ```bash
-python -m example_experiment finetune
+pip install .
 ```
 
-With the Leonardo script, you should set EXPERIMENT_PACKAGE to example in the 
-.env file, and then if you wanna run finetuning you can do:
+Then to do pretraining run:
 
 ```bash
-sbatch run_experiment.sh finetune
+python -m tiny_imagenet pretrain
 ```
+
+For finetuning, set the location of the pre-trained model using 
+```TINY_IMAGENET_PRETRAINED_CHECKPOINT``` and run:
+
+```bash
+python -m tiny_imagenet finetune
+```
+
+To use the exact same hyperparameters as in the paper, source the environment 
+files in run_configs. There are a lot of them because we have 5 
+pretraining/finetuning runs per ablation, which translates to 30 independent 
+runs (and therefore sets of env vars).
+
+More explicitly, to do one run, you can cd into 
+```run_configs/romae_no_cls/pretrain/pretrain1```, source the env file,
+and run ```python -m tiny_imagenet pretrain```. Then you can go to 
+```run_configs/romae_no_cls/finetune/finetune1```, source the env file, 
+and run ```python -m tiny_imagenet finetune```.
+You might have to change the ```TINY_IMAGENET_PRETRAINED_CHECKPOINT``` env var 
+to point to the checkpoint from the pretrain run if your batch size does not 
+match ours.

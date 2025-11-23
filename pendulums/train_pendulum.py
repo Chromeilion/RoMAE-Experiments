@@ -152,7 +152,7 @@ class PendulumHead(nn.Module):
         self.n_frames = n_frames
         self.sig = nn.Sigmoid()
 
-    def forward(self, logits):
+    def forward(self, logits, *_, **__):
         B = logits.shape[0]
         cls, logits = logits[:, 0], logits[:, 1:]
         frames = logits.reshape(logits.shape[0], self.n_frames, -1, logits.shape[2])

@@ -17,7 +17,7 @@ from uea.config import UEAConfig
 from uea.dataset import UEADataset
 
 
-def pretrain():
+def train():
     """
     Pre-training script which will train RoMAForPreTraining on the data.
     """
@@ -25,7 +25,7 @@ def pretrain():
     runs = [
         {
             "dataset": "CharacterTrajectories",
-            "model": "RoMA-tiny",
+            "model": "RoMAE-tiny",
             "ft_lr": 8e-3,
             "ft_epochs": 100,
             "ft_batch_size": 16,
@@ -43,7 +43,7 @@ def pretrain():
         },
         {
             "dataset": "BasicMotions",
-            "model": "RoMA-tiny",
+            "model": "RoMAE-tiny",
             "ft_lr": 1e-2,
             "ft_epochs": 50,
             "ft_batch_size": 8,
@@ -61,7 +61,7 @@ def pretrain():
         },
         {
             "dataset": "LSST",
-            "model": "RoMA-tiny",
+            "model": "RoMAE-tiny",
             "ft_lr": 3e-2,
             "ft_epochs": 15,
             "ft_batch_size": 16,
@@ -79,7 +79,7 @@ def pretrain():
         },
         {
             "dataset": "Epilepsy",
-            "model": "RoMA-tiny",
+            "model": "RoMAE-tiny",
             "ft_lr": 2e-3,
             "ft_epochs": 150,
             "ft_batch_size": 16,
@@ -97,7 +97,7 @@ def pretrain():
         },
         {
             "dataset": "Heartbeat",
-            "model": "RoMA-tiny",
+            "model": "RoMAE-tiny",
             "ft_lr": 2e-2,
             "ft_epochs": 30,
             "ft_batch_size": 32,
@@ -124,7 +124,7 @@ def pretrain():
             print(f"Finished {run['dataset']} run {i}")
 
 
-def pretrain_on_ds(dataset_dir, run, dataset_savedir: Path = Path("."), mask_percentage: float = 0.3, seed=42):
+def pretrain_on_ds(dataset_dir, run, dataset_savedir: Path = Path("."), seed=42):
     torch.manual_seed(seed)
     random.seed(seed)
     np.random.seed(seed)
@@ -197,7 +197,6 @@ def pretrain_on_ds(dataset_dir, run, dataset_savedir: Path = Path("."), mask_per
         model = RoMAEForClassification(config)
     model.set_loss_fn(nn.CrossEntropyLoss(label_smoothing=run["ft_label_smoothing"]))
     latest_checkpoint = get_latest_checkpoint(savedir/"finetune")
-    epochs = 20
     batch_size=16
     trainer_config = TrainerConfig(
         random_seed=seed,

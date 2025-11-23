@@ -17,4 +17,4 @@ class UEAConfig(BaseSettings):
     )
     dataset_dir: str
     pretrained_checkpoint: Optional[str] = Field(None)
-    encoder_size: str = "RoMA-tiny"
+    encoder_size: str = "RoMAE-tiny"
