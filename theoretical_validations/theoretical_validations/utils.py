@@ -15,7 +15,7 @@ class PositionReconstructionHead(nn.Module):
             nn.Linear(d_model, d_output)
         )
 
-    def forward(self, x):
+    def forward(self, x, pad_mask = None):
         if self.cls:
             x = x[:, 1:, :]
         return self.head(x).transpose(1, 2)

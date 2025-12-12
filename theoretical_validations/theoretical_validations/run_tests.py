@@ -18,10 +18,10 @@ from theoretical_validations.utils import PositionReconstructionHead, RelativeRe
 
 
 def run_tests():
-    tiny_args = get_encoder_size("RoMA-tiny")
-    small_args = get_encoder_size("RoMA-small")
-    base_args = get_encoder_size("RoMA-base")
-    large_args = get_encoder_size("RoMA-large")
+    tiny_args = get_encoder_size("RoMAE-tiny")
+    small_args = get_encoder_size("RoMAE-small")
+    base_args = get_encoder_size("RoMAE-base")
+    large_args = get_encoder_size("RoMAE-large")
     model_d_tests = [
         {
             "ndim": 1,
@@ -110,20 +110,6 @@ def run_tests():
             "optimizer": "sgd",
             "uniform": True
         })
-#    errors = run_single_test(**{
-#            "ndim": 1,
-#            "position_range": (0, 100),
-#            "seq_len": 1,
-#            "use_cls": True,
-#            "d_model": large_args["d_model"],
-#            "rope_p": 0.75,
-#            "run_extra_eval": True,
-#            "wandb_project": "Experimental-Validation-Relative",
-#            "optimizer_args": {"momentum": 0.9, "weight_decay": 0.},
-#            "lr": 5e-7,
-#            "optimizer": "sgd",
-#            "uniform": True
-#        })
     mean_error = list(torch.stack(errors).mean(dim=0).detach().cpu().numpy())
     std = list(torch.stack(errors).std(dim=0).detach().cpu().numpy())
     print(mean_error)
@@ -149,7 +135,7 @@ def run_single_test(ndim: int, position_range: tuple[float, float],
     random.seed(starting_seed)
     np.random.seed(starting_seed)
     # Let's use the tiny model:
-    encoder_args = get_encoder_size("RoMA-tiny")
+    encoder_args = get_encoder_size("RoMAE-tiny")
     encoder_args["dim_feedforward"] = 4 * encoder_args["d_model"]
     encoder_args["d_model"] = d_model
     model_config = RoMAEForClassificationConfig(
