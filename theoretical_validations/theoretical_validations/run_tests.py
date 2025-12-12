@@ -22,80 +22,80 @@ def run_tests():
     small_args = get_encoder_size("RoMA-small")
     base_args = get_encoder_size("RoMA-base")
     large_args = get_encoder_size("RoMA-large")
-#    model_d_tests = [
-#        {
-#            "ndim": 1,
-#            "position_range": (1, 50),
-#            "seq_len": 10,
-#            "use_cls": True,
-#            "d_model": tiny_args["d_model"],
-#            "rope_p": 0.75,
-#            "wandb_project": "Experimental-Validation-d_model=tiny"
-#        },
-#        {
-#            "ndim": 1,
-#            "position_range": (1, 50),
-#            "seq_len": 10,
-#            "use_cls": True,
-#            "d_model": small_args["d_model"],
-#            "rope_p": 0.75,
-#            "wandb_project": "Experimental-Validation-d_model=small"
-#        },
-#        {
-#            "ndim": 1,
-#            "position_range": (1, 50),
-#            "seq_len": 10,
-#            "use_cls": True,
-#            "d_model": base_args["d_model"],
-#            "rope_p": 0.75,
-#            "wandb_project": "Experimental-Validation-d_model=base"
-#        },
-#        {
-#            "ndim": 1,
-#            "position_range": (1, 50),
-#            "seq_len": 10,
-#            "use_cls": True,
-#            "d_model": large_args["d_model"],
-#            "rope_p": 0.75,
-#            "wandb_project": "Experimental-Validation-d_model=large"
-#        },
-#        {
-#            "ndim": 1,
-#            "position_range": (1, 50),
-#            "seq_len": 10,
-#            "use_cls": False,
-#            "d_model": tiny_args["d_model"],
-#            "rope_p": 0.75,
-#            "wandb_project": "Experimental-Validation-d_model=tiny"
-#        },
-#        {
-#            "ndim": 1,
-#            "position_range": (1, 50),
-#            "seq_len": 10,
-#            "use_cls": False,
-#            "d_model": small_args["d_model"],
-#            "rope_p": 0.75,
-#            "wandb_project": "Experimental-Validation-d_model=small"
-#        },
-#        {
-#            "ndim": 1,
-#            "position_range": (1, 50),
-#            "seq_len": 10,
-#            "use_cls": False,
-#            "d_model": base_args["d_model"],
-#            "rope_p": 0.75,
-#            "wandb_project": "Experimental-Validation-d_model=base"
-#        },
-#        {
-#            "ndim": 1,
-#            "position_range": (1, 50),
-#            "seq_len": 10,
-#            "use_cls": False,
-#            "d_model": large_args["d_model"],
-#            "rope_p": 0.75,
-#            "wandb_project": "Experimental-Validation-d_model=large"
-#        }
-#    ]
+    model_d_tests = [
+        {
+            "ndim": 1,
+            "position_range": (1, 50),
+            "seq_len": 10,
+            "use_cls": True,
+            "d_model": tiny_args["d_model"],
+            "rope_p": 0.75,
+            "wandb_project": "Experimental-Validation-d_model=tiny"
+        },
+        {
+            "ndim": 1,
+            "position_range": (1, 50),
+            "seq_len": 10,
+            "use_cls": True,
+            "d_model": small_args["d_model"],
+            "rope_p": 0.75,
+            "wandb_project": "Experimental-Validation-d_model=small"
+        },
+        {
+            "ndim": 1,
+            "position_range": (1, 50),
+            "seq_len": 10,
+            "use_cls": True,
+            "d_model": base_args["d_model"],
+            "rope_p": 0.75,
+            "wandb_project": "Experimental-Validation-d_model=base"
+        },
+        {
+            "ndim": 1,
+            "position_range": (1, 50),
+            "seq_len": 10,
+            "use_cls": True,
+            "d_model": large_args["d_model"],
+            "rope_p": 0.75,
+            "wandb_project": "Experimental-Validation-d_model=large"
+        },
+        {
+            "ndim": 1,
+            "position_range": (1, 50),
+            "seq_len": 10,
+            "use_cls": False,
+            "d_model": tiny_args["d_model"],
+            "rope_p": 0.75,
+            "wandb_project": "Experimental-Validation-d_model=tiny"
+        },
+        {
+            "ndim": 1,
+            "position_range": (1, 50),
+            "seq_len": 10,
+            "use_cls": False,
+            "d_model": small_args["d_model"],
+            "rope_p": 0.75,
+            "wandb_project": "Experimental-Validation-d_model=small"
+        },
+        {
+            "ndim": 1,
+            "position_range": (1, 50),
+            "seq_len": 10,
+            "use_cls": False,
+            "d_model": base_args["d_model"],
+            "rope_p": 0.75,
+            "wandb_project": "Experimental-Validation-d_model=base"
+        },
+        {
+            "ndim": 1,
+            "position_range": (1, 50),
+            "seq_len": 10,
+            "use_cls": False,
+            "d_model": large_args["d_model"],
+            "rope_p": 0.75,
+            "wandb_project": "Experimental-Validation-d_model=large"
+        }
+    ]
     errors = run_single_test(**{
             "ndim": 1,
             "position_range": (0, 100),
