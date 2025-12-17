@@ -7,12 +7,12 @@ and [here](https://baas.aas.org/pub/2023n2i117p01/release/1).
 
 ## Checkpoints
 
-| Model Size   | Includes <br/> Flagged Data | F-score | Checkpoint                                                                                                    |
-|--------------|-----------------------------|---------|---------------------------------------------------------------------------------------------------------------|
-| tiny-shallow | <center>✅<center/>          | 0.7106  | [elasticc-romae-tiny-shallow.tar.gz](https://pl.cro.moe/romae_checkpoints/elasticc-romae-tiny-shallow.tar.gz) |
-| tiny         | <center>✅<center/>          | 0.8029  | [elasticc-romae-tiny.tar.gz](https://pl.cro.moe/romae_checkpoints/elasticc-romae-tiny.tar.gz)                 |
-| tiny-shallow | <center>❌<center/>          | 0.6649  | [elasticc-romae-tiny-shallow-noalert.tar.gz](https://pl.cro.moe/checkpoint-8925-tiny-shallow-noalert.tar.gz)  |
-| tiny         | <center>❌<center/>          | 0.7205  | [elasticc-romae-tiny-noalert.tar.gz](https://pl.cro.moe/romae_checkpoints/elasticc-romae-tiny-noalert.tar.gz) |
+| Model Size   | Uses Alert <br/> Mask | F-score | Checkpoint                                                                                                    |
+|--------------|-----------------------|---------|---------------------------------------------------------------------------------------------------------------|
+| tiny-shallow | <center>❌<center/>    | 0.7106  | [elasticc-romae-tiny-shallow.tar.gz](https://pl.cro.moe/romae_checkpoints/elasticc-romae-tiny-shallow.tar.gz) |
+| tiny         | <center>❌<center/>    | 0.8029  | [elasticc-romae-tiny.tar.gz](https://pl.cro.moe/romae_checkpoints/elasticc-romae-tiny.tar.gz)                 |
+| tiny-shallow | <center>✅<center/>    | 0.6649  | [elasticc-romae-tiny-shallow-noalert.tar.gz](https://pl.cro.moe/checkpoint-8925-tiny-shallow-noalert.tar.gz)  |
+| tiny         | <center>✅<center/>    | 0.7205  | [elasticc-romae-tiny-noalert.tar.gz](https://pl.cro.moe/romae_checkpoints/elasticc-romae-tiny-noalert.tar.gz) |
 
 Because of the expenses involved with training RoMAE on the ELAsTiCC dataset,
 we provide the fine-tuned model checkpoints. These can be used for 
